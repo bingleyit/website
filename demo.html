@@ -55,10 +55,94 @@
     __grocery:[{id:46,text:'Sourdough bread',done:false},{id:47,text:'Olive oil',done:true},{id:48,text:'Cherry tomatoes',done:false},{id:49,text:'Dark chocolate 🍫',done:false}]
   };
 
+  // Demo projects — kanban boards
+  var PROJECTS = {
+    boards: [
+      {
+        id:'b1', name:'cloudpad v2', color:'#006cd1',
+        columns: [
+          {id:'c1', name:'Backlog', color:null, cards:[
+            {id:'k1', text:'Redesign settings page', done:false},
+            {id:'k2', text:'Add collaborative editing', done:false},
+            {id:'k3', text:'Mobile app MVP', done:false},
+            {id:'k4', text:'Offline mode with sync', done:false}
+          ]},
+          {id:'c2', name:'In Progress', color:'#f59e0b', cards:[
+            {id:'k5', text:'Recipe pad enhancements', done:false},
+            {id:'k6', text:'Pomodoro sound effects', done:false},
+            {id:'k7', text:'Demo mode for website', done:false}
+          ]},
+          {id:'c3', name:'Review', color:'#8b5cf6', cards:[
+            {id:'k8', text:'Landing page redesign', done:false},
+            {id:'k9', text:'API performance audit', done:false}
+          ]},
+          {id:'c4', name:'Done', color:'#22c55e', cards:[
+            {id:'k10', text:'Mock API injection layer', done:true},
+            {id:'k11', text:'Feature showcase website', done:true},
+            {id:'k12', text:'Railway deployment pipeline', done:true}
+          ]}
+        ]
+      },
+      {
+        id:'b2', name:'Side Projects', color:'#f59e0b',
+        columns: [
+          {id:'c5', name:'Ideas', color:null, cards:[
+            {id:'k13', text:'Chrome extension — quick add', done:false},
+            {id:'k14', text:'Raycast integration', done:false},
+            {id:'k15', text:'Obsidian plugin', done:false}
+          ]},
+          {id:'c6', name:'Building', color:'#006cd1', cards:[
+            {id:'k16', text:'Portfolio redesign 2025', done:false}
+          ]},
+          {id:'c7', name:'Shipped', color:'#22c55e', cards:[
+            {id:'k17', text:'cloudpad open beta', done:true},
+            {id:'k18', text:'Pomodoro timer', done:true}
+          ]}
+        ]
+      }
+    ],
+    activeBoardId: 'b1'
+  };
+
+  // Demo recipes (RecipeTin Eats inspired)
+  var RECIPES = [
+    {id:'rec1', title:'Crispy Garlic Butter Chicken', tags:['chicken','quick','weeknight'],
+     cook_time:20, prep_time:10,
+     ingredients:['600g chicken thighs (boneless)','4 garlic cloves (minced)','50g butter','1 tbsp olive oil','1 tsp smoked paprika','1 tsp dried thyme','salt & pepper','fresh parsley to serve'],
+     description:'Golden, crispy-skinned chicken thighs in a rich garlic butter sauce. On the table in 30 minutes — tastes like it took hours.',
+     image_url:'', source_url:''},
+    {id:'rec2', title:'One-Pot Beef Stroganoff', tags:['beef','comfort','pasta'],
+     cook_time:35, prep_time:10,
+     ingredients:['500g beef strips','250g mushrooms (sliced)','1 onion (diced)','2 garlic cloves','300ml beef stock','200ml sour cream','2 tbsp Worcestershire sauce','1 tbsp Dijon mustard','egg noodles or pasta to serve'],
+     description:'Creamy, deeply savoury beef stroganoff made in one pot. Weeknight comfort food at its absolute best.',
+     image_url:'', source_url:''},
+    {id:'rec3', title:'Thai Green Curry', tags:['thai','curry','coconut'],
+     cook_time:25, prep_time:15,
+     ingredients:['400g chicken breast (sliced)','400ml coconut milk','3 tbsp green curry paste','1 zucchini','1 red capsicum','100g baby spinach','2 kaffir lime leaves','fish sauce to taste','jasmine rice to serve'],
+     description:'Fragrant, vibrant Thai green curry that beats any takeaway. The secret is a good paste and full-fat coconut milk.',
+     image_url:'', source_url:''},
+    {id:'rec4', title:'Classic Banana Bread', tags:['baking','sweet','breakfast'],
+     cook_time:60, prep_time:15,
+     ingredients:['3 very ripe bananas','80g melted butter','150g brown sugar','2 eggs','1 tsp vanilla extract','1 tsp baking soda','pinch of salt','190g plain flour','optional: chocolate chips or walnuts'],
+     description:'The ultimate banana bread — moist, tender and deeply banana-flavoured. Uses the ripest bananas you can find.',
+     image_url:'', source_url:''},
+    {id:'rec5', title:'Lemon Garlic Pasta', tags:['pasta','vegetarian','quick'],
+     cook_time:15, prep_time:10,
+     ingredients:['400g spaghetti','4 garlic cloves (thinly sliced)','60ml olive oil','zest & juice of 2 lemons','50g parmesan (grated)','handful fresh basil','chilli flakes','salt & pepper'],
+     description:'Bright, punchy lemon garlic pasta ready in 25 minutes. Elegant simplicity — this one will be on repeat.',
+     image_url:'', source_url:''},
+    {id:'rec6', title:'Shakshuka', tags:['eggs','middle-eastern','brunch'],
+     cook_time:25, prep_time:10,
+     ingredients:['6 eggs','400g tinned tomatoes','1 red capsicum (diced)','1 onion (diced)','3 garlic cloves','1 tsp cumin','1 tsp paprika','½ tsp chilli flakes','fresh coriander','feta to serve','crusty bread to serve'],
+     description:'Eggs poached in a spiced, smoky tomato sauce. Perfect for brunch or a lazy dinner — one pan, maximum flavour.',
+     image_url:'', source_url:''}
+  ];
+
   // Build notes array (mutable in memory)
   var _notes = [];
   keys.forEach(function(k,i){ _notes.push({pad_key:k, body:JSON.stringify(WEEK_TASKS[i]||[])}); });
   Object.keys(SOMEDAY).forEach(function(k){ _notes.push({pad_key:k, body:JSON.stringify(SOMEDAY[k])}); });
+  _notes.push({pad_key:'__projects__', body:JSON.stringify(PROJECTS)});
 
   // Mock fetch
   var _origFetch = window.fetch.bind(window);
@@ -80,6 +164,7 @@
       if (ex) ex.body = body.body||'[]'; else _notes.push({pad_key:padKey,body:body.body||'[]'});
       return ok({ok:true});
     }
+    if (path === '/api/recipes' && method === 'GET') return ok({recipes: RECIPES});
     if (path === '/api/user/me') return ok({user:demoUser});
     if (path === '/api/config')  return ok({googleClientId:''});
     if (path === '/api/notifications') return ok({notifications:[]});

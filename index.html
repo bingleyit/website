@@ -60,6 +60,16 @@
       transition: color 0.15s;
     }
     .nav-links a:hover { color: var(--text); }
+    .nav-right { display: flex; align-items: center; gap: 10px; }
+    .nav-login {
+      font-size: 0.78rem; font-weight: 500;
+      color: var(--text-dim); text-decoration: none;
+      letter-spacing: 0.04em;
+      padding: 7px 16px; border-radius: 8px;
+      border: 1px solid var(--border);
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .nav-login:hover { border-color: var(--accent); color: var(--accent); }
     .nav-cta {
       background: var(--accent); color: #fff;
       font-size: 0.78rem; font-weight: 500;
@@ -71,10 +81,10 @@
 
     /* ── HERO ─────────────────────────────── */
     .hero {
-      padding: 140px 40px 80px;
+      padding: 120px 40px 60px;
       display: flex; flex-direction: column;
       align-items: center; text-align: center;
-      max-width: 1100px; margin: 0 auto;
+      max-width: 1200px; margin: 0 auto;
     }
     .hero-label {
       font-family: var(--font-mono);
@@ -100,7 +110,7 @@
     }
     .hero-btns {
       display: flex; gap: 12px; align-items: center;
-      margin-bottom: 72px;
+      margin-bottom: 60px;
     }
     .btn-primary {
       background: var(--accent); color: #fff;
@@ -121,55 +131,91 @@
     }
     .btn-secondary:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
 
-    /* Hero screenshot */
-    .hero-screen {
-      width: 100%; max-width: 960px;
+    /* ── HERO DEMO (desktop) ──────────────── */
+    .hero-demo {
+      width: 100%; max-width: 1100px;
       border-radius: 16px;
       border: 1px solid var(--border);
       box-shadow: 0 24px 80px rgba(0,108,209,0.12), 0 4px 16px rgba(0,0,0,0.06);
       overflow: hidden;
-      position: relative;
     }
-    .hero-screen-bar {
-      height: 40px;
-      background: var(--accent);
+    .hero-demo-bar {
+      height: 44px;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
       display: flex; align-items: center;
       padding: 0 16px; gap: 8px;
     }
-    .hero-screen-dot {
-      width: 10px; height: 10px; border-radius: 50%;
-      background: rgba(255,255,255,0.35);
+    .demo-dot { width: 11px; height: 11px; border-radius: 50%; }
+    .demo-dot.red { background: #ff5f57; }
+    .demo-dot.yellow { background: #febc2e; }
+    .demo-dot.green { background: #28c840; }
+    .demo-url {
+      flex: 1; max-width: 340px; margin: 0 auto;
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: 6px; height: 26px;
+      display: flex; align-items: center; padding: 0 10px;
+      font-family: var(--font-mono); font-size: 0.65rem;
+      color: var(--text-dim);
     }
-    .hero-screen-logo {
-      font-family: var(--font-logo);
-      font-size: 1rem; font-weight: 700;
-      color: #fff; margin-left: 8px;
-    }
-    .hero-screen-body {
+    .hero-iframe {
+      width: 100%;
+      height: 75vh;
+      min-height: 520px;
+      max-height: 900px;
+      border: none;
+      display: block;
       background: var(--bg);
-      display: grid; grid-template-columns: repeat(7, 1fr);
-      gap: 0;
     }
-    .mock-day {
-      padding: 14px 12px;
-      border-right: 1px solid var(--border-light);
-      min-height: 200px;
+
+    /* ── MOBILE DEMO ──────────────────────── */
+    .mobile-demo-section {
+      padding: 80px 40px;
+      text-align: center;
+      background: var(--surface);
+      border-top: 1px solid var(--border-light);
     }
-    .mock-day:last-child { border-right: none; }
-    .mock-day-hdr {
-      font-size: 0.6rem; font-weight: 600;
-      text-transform: uppercase; letter-spacing: 0.1em;
-      color: var(--text-dim); margin-bottom: 10px;
+    .mobile-demo-section h2 {
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      font-weight: 700; letter-spacing: -0.025em;
+      margin-bottom: 10px;
     }
-    .mock-day.today .mock-day-hdr { color: var(--accent); border-bottom: 2px solid var(--accent); padding-bottom: 6px; }
-    .mock-task {
-      font-size: 0.62rem; color: var(--text);
-      padding: 4px 0;
-      border-bottom: 1px solid var(--border-light);
-      line-height: 1.4;
+    .mobile-demo-section p {
+      font-size: 0.95rem; color: var(--text-dim);
+      font-weight: 300; line-height: 1.7;
+      max-width: 420px; margin: 0 auto 48px;
     }
-    .mock-task.done { color: var(--text-light); text-decoration: line-through; }
-    .mock-task.accent { color: var(--accent); font-weight: 500; }
+    .phone-outer {
+      display: inline-block;
+      background: #1a1714;
+      border-radius: 44px;
+      padding: 14px 14px;
+      box-shadow: 0 40px 80px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.06) inset;
+      position: relative;
+    }
+    .phone-notch {
+      width: 90px; height: 24px;
+      background: #1a1714;
+      border-radius: 0 0 16px 16px;
+      position: absolute; top: 14px; left: 50%; transform: translateX(-50%);
+      z-index: 2;
+    }
+    .phone-screen {
+      width: 375px;
+      height: 680px;
+      border-radius: 32px;
+      overflow: hidden;
+      position: relative;
+      background: #fff;
+    }
+    .phone-iframe {
+      width: 375px;
+      height: 680px;
+      border: none;
+      display: block;
+      transform-origin: top left;
+      pointer-events: auto;
+    }
 
     /* ── DIVIDER ──────────────────────────── */
     .divider {
@@ -344,59 +390,73 @@
       text-align: center;
     }
 
-    /* ── DEMO SECTION ─────────────────────── */
-    #demo {
-      padding: 80px 0 0;
+    /* ── PAD TYPES SECTION ─────────────────── */
+    #pad-types {
       border-top: 1px solid var(--border-light);
+      padding: 80px 0;
     }
-    .demo-header {
-      max-width: 1100px; margin: 0 auto;
-      padding: 0 40px 48px;
-      text-align: center;
+    .pad-types-inner {
+      max-width: 1100px; margin: 0 auto; padding: 0 40px;
     }
-    .demo-header h2 {
+    .pad-types-inner h2 {
       font-size: clamp(1.8rem, 3.5vw, 2.8rem);
       font-weight: 700; letter-spacing: -0.03em;
-      margin-bottom: 14px;
+      text-align: center; margin-bottom: 14px;
     }
-    .demo-header p {
+    .pad-types-inner > p {
       font-size: 1rem; color: var(--text-dim);
       font-weight: 300; line-height: 1.7;
+      max-width: 500px; margin: 0 auto 60px;
+      text-align: center;
     }
-    .demo-frame-wrap {
-      max-width: 1200px; margin: 0 auto;
-      padding: 0 40px 80px;
+    .pad-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
     }
-    .demo-frame-chrome {
-      border-radius: 16px 16px 0 0;
+    .pad-card {
       border: 1px solid var(--border);
-      border-bottom: none;
-      overflow: hidden;
-      box-shadow: 0 -4px 40px rgba(0,108,209,0.08), 0 0 0 1px var(--border);
-    }
-    .demo-chrome-bar {
-      height: 44px; background: var(--surface);
-      border-bottom: 1px solid var(--border);
-      display: flex; align-items: center; padding: 0 16px; gap: 8px;
-    }
-    .chrome-dot { width: 11px; height: 11px; border-radius: 50%; }
-    .chrome-dot.red { background: #ff5f57; }
-    .chrome-dot.yellow { background: #febc2e; }
-    .chrome-dot.green { background: #28c840; }
-    .chrome-url {
-      flex: 1; max-width: 380px; margin: 0 auto;
-      background: var(--bg); border: 1px solid var(--border);
-      border-radius: 6px; height: 26px;
-      display: flex; align-items: center; padding: 0 10px;
-      font-family: var(--font-mono); font-size: 0.65rem;
-      color: var(--text-dim);
-    }
-    .demo-iframe {
-      width: 100%;
-      height: 680px;
-      border: none;
-      display: block;
+      border-radius: 14px;
+      padding: 24px;
       background: var(--bg);
+      transition: box-shadow 0.2s, border-color 0.2s;
+    }
+    .pad-card:hover {
+      box-shadow: 0 4px 24px rgba(0,108,209,0.08);
+      border-color: rgba(0,108,209,0.2);
+    }
+    .pad-card-hdr {
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 14px;
+    }
+    .pad-card-icon {
+      width: 40px; height: 40px; border-radius: 10px;
+      background: var(--accent-light);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; flex-shrink: 0;
+    }
+    .pad-card-hdr-text {}
+    .pad-card-name {
+      font-size: 0.92rem; font-weight: 600;
+      color: var(--text); letter-spacing: -0.01em;
+    }
+    .pad-card-subtitle {
+      font-size: 0.72rem; color: var(--text-dim);
+      font-family: var(--font-mono); letter-spacing: 0.04em;
+    }
+    .pad-card-features {
+      list-style: none; display: flex; flex-direction: column; gap: 7px;
+    }
+    .pad-card-features li {
+      font-size: 0.8rem; color: var(--text-dim);
+      display: flex; align-items: baseline; gap: 8px;
+      line-height: 1.5;
+    }
+    .pad-card-features li::before {
+      content: '–';
+      color: var(--accent);
+      flex-shrink: 0;
+      font-weight: 600;
     }
 
     /* ── BOTTOM CTA ───────────────────────── */
@@ -448,13 +508,16 @@
     @media (max-width: 768px) {
       nav { padding: 0 20px; }
       .nav-links { display: none; }
-      .hero { padding: 100px 20px 60px; }
+      .nav-login { display: none; }
+      .hero { padding: 90px 20px 48px; }
       .features { padding: 0 20px; }
       .feature-row { grid-template-columns: 1fr; gap: 32px; }
       .feature-row.flip { direction: ltr; }
-      .hero-screen-body { grid-template-columns: repeat(3, 1fr); }
-      .mock-day:nth-child(n+4) { display: none; }
       .demo-frame-wrap { padding: 0 20px 60px; }
+      .mobile-demo-section { padding: 60px 20px; }
+      .phone-outer { transform: scale(0.85); transform-origin: center top; }
+      .pad-types-inner { padding: 0 20px; }
+      .pad-grid { grid-template-columns: 1fr; }
       footer { flex-direction: column; gap: 20px; text-align: center; }
     }
   </style>
@@ -466,10 +529,13 @@
     <a href="#" class="nav-logo">cloudpad</a>
     <ul class="nav-links">
       <li><a href="#features">Features</a></li>
+      <li><a href="#pad-types">All Pads</a></li>
       <li><a href="#demo">Demo</a></li>
-      <li><a href="https://github.com/bingleyit/cloudpad" target="_blank">GitHub</a></li>
     </ul>
-    <a href="#demo" class="nav-cta">Try it free →</a>
+    <div class="nav-right">
+      <a href="https://workspace.cloudpadapp.com" class="nav-login">Log in</a>
+      <a href="https://workspace.cloudpadapp.com" class="nav-cta">Get started →</a>
+    </div>
   </nav>
 
   <!-- HERO -->
@@ -478,29 +544,46 @@
     <h1>Your pad,<br>your <span>mood</span>.</h1>
     <p>A beautifully designed notepad that adapts to how you feel. Plan your week, capture ideas, and stay focused — without the noise.</p>
     <div class="hero-btns">
-      <a href="#demo" class="btn-primary">
-        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-        Live Demo
+      <a href="https://workspace.cloudpadapp.com" class="btn-primary">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 3h6v6M10 14L21 3M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/></svg>
+        Open cloudpad
       </a>
-      <a href="https://github.com/bingleyit/cloudpad" target="_blank" class="btn-secondary">
-        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.11.82-.26.82-.58v-2.03c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.5 1 .1-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 013-.4c1.02.01 2.04.14 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
-        View on GitHub
+      <a href="#demo" class="btn-secondary">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        Live demo
       </a>
     </div>
 
-    <!-- Live interactive demo -->
-    <div class="hero-screen">
-      <div class="hero-screen-bar">
-        <div class="hero-screen-dot"></div>
-        <div class="hero-screen-dot"></div>
-        <div class="hero-screen-dot"></div>
-        <span class="hero-screen-logo">cloudpad — try it</span>
+    <!-- Desktop demo iframe -->
+    <div class="hero-demo" id="demo">
+      <div class="hero-demo-bar">
+        <div class="demo-dot red"></div>
+        <div class="demo-dot yellow"></div>
+        <div class="demo-dot green"></div>
+        <div class="demo-url">🔒 cloudpadapp.com — interactive demo</div>
       </div>
       <iframe
+        class="hero-iframe"
         src="demo.html"
-        style="width:100%;height:520px;border:none;display:block;background:#fff;"
         title="cloudpad interactive demo"
+        allow="fullscreen"
       ></iframe>
+    </div>
+  </section>
+
+  <!-- MOBILE DEMO -->
+  <section class="mobile-demo-section">
+    <h2>Beautiful on mobile too.</h2>
+    <p>cloudpad is fully responsive — your pads, your tasks, your mood, wherever you are.</p>
+    <div class="phone-outer">
+      <div class="phone-notch"></div>
+      <div class="phone-screen">
+        <iframe
+          class="phone-iframe"
+          src="demo.html"
+          title="cloudpad mobile demo"
+        ></iframe>
+      </div>
     </div>
   </section>
 
@@ -558,7 +641,7 @@
       <div class="feature-text">
         <span class="feature-tag">02 · Mood</span>
         <h3>Set the mood.<br>Own the day.</h3>
-        <p>Pick a theme that matches how you feel right now. Cloudpad adapts its colour palette to your mood — because how your workspace looks changes how you think.</p>
+        <p>Pick a theme that matches how you feel right now. cloudpad adapts its colour palette to your mood — because how your workspace looks changes how you think.</p>
         <div class="feature-pills">
           <span class="feature-pill">🌸 Blossom</span>
           <span class="feature-pill">🌊 Ocean</span>
@@ -649,27 +732,242 @@
     </div>
   </section>
 
-  <!-- LIVE DEMO -->
-  <section id="demo">
-    <div class="demo-header">
-      <h2>Try it right now.</h2>
-      <p>No signup required. Your notes are saved automatically.</p>
-    </div>
-    <div class="demo-frame-wrap">
-      <div class="demo-frame-chrome">
-        <div class="demo-chrome-bar">
-          <div class="chrome-dot red"></div>
-          <div class="chrome-dot yellow"></div>
-          <div class="chrome-dot green"></div>
-          <div class="chrome-url">🔒 your-cloudpad-url.railway.app</div>
+  <!-- PAD TYPES FEATURE LIST -->
+  <section id="pad-types">
+    <div class="pad-types-inner">
+      <h2>One workspace. Every pad.</h2>
+      <p>cloudpad isn't just a to-do list. It's a full suite of pads — each built for a specific part of your life.</p>
+
+      <div class="pad-grid">
+
+        <div class="pad-card">
+          <div class="pad-card-hdr">
+            <div class="pad-card-icon">📅</div>
+            <div class="pad-card-hdr-text">
+              <div class="pad-card-name">Weekly Pad</div>
+              <div class="pad-card-subtitle">planning · tasks</div>
+            </div>
+          </div>
+          <ul class="pad-card-features">
+            <li>7-column view, one column per day</li>
+            <li>Highlight tasks with colour labels</li>
+            <li>Navigate forward and back by week</li>
+            <li>Tasks roll forward automatically</li>
+            <li>Add, complete and reorder tasks inline</li>
+          </ul>
         </div>
-        <!-- 🔧 Replace the src below with your Railway cloudpad URL -->
-        <iframe
-          class="demo-iframe"
-          src="https://your-cloudpad-url.railway.app"
-          title="Cloudpad live demo"
-          allow="fullscreen"
-        ></iframe>
+
+        <div class="pad-card">
+          <div class="pad-card-hdr">
+            <div class="pad-card-icon">📥</div>
+            <div class="pad-card-hdr-text">
+              <div class="pad-card-name">Inbox</div>
+              <div class="pad-card-subtitle">capture · triage</div>
+            </div>
+          </div>
+          <ul class="pad-card-features">
+            <li>Quick-capture for anything, any time</li>
+            <li>Daily intention setting</li>
+            <li>Clear and reset each morning</li>
+            <li>Priority-first ordering</li>
+          </ul>
+        </div>
+
+        <div class="pad-card">
+          <div class="pad-card-hdr">
+            <div class="pad-card-icon">🌤</div>
+            <div class="pad-card-hdr-text">
+              <div class="pad-card-name">Someday</div>
+              <div class="pad-card-subtitle">long-term · goals</div>
+            </div>
+          </div>
+          <ul class="pad-card-features">
+            <li>Personal goals and aspirations</li>
+            <li>Ideas to revisit later</li>
+            <li>No due date pressure — just capture</li>
+            <li>Multiple sub-lists: Personal, Ideas, Life</li>
+          </ul>
+        </div>
+
+        <div class="pad-card">
+          <div class="pad-card-hdr">
+            <div class="pad-card-icon">🛒</div>
+            <div class="pad-card-hdr-text">
+              <div class="pad-card-name">Shopping & Grocery</div>
+              <div class="pad-card-subtitle">lists · sharing</div>
+            </div>
+          </div>
+          <ul class="pad-card-features">
+            <li>Separate Shopping and Grocery pads</li>
+            <li>Shareable via public link — no login needed</li>
+            <li>Check off items as you shop</li>
+            <li>Real-time sync across devices</li>
+          </ul>
+        </div>
+
+        <div class="pad-card">
+          <div class="pad-card-hdr">
+            <div class="pad-card-icon">📝</div>
+            <div class="pad-card-hdr-text">
+              <div class="pad-card-name">Notes</div>
+              <div class="pad-card-subtitle">writing · sharing</div>
+            </div>
+          </div>
+          <ul class="pad-card-features">
+            <li>Freeform rich text notes</li>
+            <li>One-click public share link</li>
+            <li>Accessible to viewers without login</li>
+            <li>Great for meeting notes and briefings</li>
+          </ul>
+        </div>
+
+        <div class="pad-card">
+          <div class="pad-card-hdr">
+            <div class="pad-card-icon">🗂</div>
+            <div class="pad-card-hdr-text">
+              <div class="pad-card-name">Projects</div>
+              <div class="pad-card-subtitle">kanban · boards</div>
+            </div>
+          </div>
+          <ul class="pad-card-features">
+            <li>Full kanban board with multiple columns</li>
+            <li>Multiple boards per workspace</li>
+            <li>Drag-and-drop cards between columns</li>
+            <li>Colour-coded columns and boards</li>
+            <li>Card completion tracking</li>
+          </ul>
+        </div>
+
+        <div class="pad-card">
+          <div class="pad-card-hdr">
+            <div class="pad-card-icon">📊</div>
+            <div class="pad-card-hdr-text">
+              <div class="pad-card-name">Finance</div>
+              <div class="pad-card-subtitle">stocks · portfolio</div>
+            </div>
+          </div>
+          <ul class="pad-card-features">
+            <li>Stock and crypto watchlist</li>
+            <li>Live market quotes</li>
+            <li>Portfolio value tracker</li>
+            <li>Daily price movements at a glance</li>
+          </ul>
+        </div>
+
+        <div class="pad-card">
+          <div class="pad-card-hdr">
+            <div class="pad-card-icon">🍳</div>
+            <div class="pad-card-hdr-text">
+              <div class="pad-card-name">Recipes</div>
+              <div class="pad-card-subtitle">cooking · collection</div>
+            </div>
+          </div>
+          <ul class="pad-card-features">
+            <li>Save and browse your recipe collection</li>
+            <li>Cook time, prep time, and ingredients</li>
+            <li>Tag and filter by cuisine or meal type</li>
+            <li>Clean, focused reading view</li>
+          </ul>
+        </div>
+
+        <div class="pad-card">
+          <div class="pad-card-hdr">
+            <div class="pad-card-icon">✈️</div>
+            <div class="pad-card-hdr-text">
+              <div class="pad-card-name">Travel</div>
+              <div class="pad-card-subtitle">trips · planning</div>
+            </div>
+          </div>
+          <ul class="pad-card-features">
+            <li>Trip itinerary planning pad</li>
+            <li>Packing lists and pre-trip tasks</li>
+            <li>Destination notes and bookmarks</li>
+            <li>Share trips with travel companions</li>
+          </ul>
+        </div>
+
+        <div class="pad-card">
+          <div class="pad-card-hdr">
+            <div class="pad-card-icon">&lt;/&gt;</div>
+            <div class="pad-card-hdr-text">
+              <div class="pad-card-name">Codes</div>
+              <div class="pad-card-subtitle">snippets · dev</div>
+            </div>
+          </div>
+          <ul class="pad-card-features">
+            <li>Store reusable code snippets</li>
+            <li>Monospace formatting out of the box</li>
+            <li>Tag by language or project</li>
+            <li>One-click copy to clipboard</li>
+          </ul>
+        </div>
+
+        <div class="pad-card">
+          <div class="pad-card-hdr">
+            <div class="pad-card-icon">📰</div>
+            <div class="pad-card-hdr-text">
+              <div class="pad-card-name">News</div>
+              <div class="pad-card-subtitle">rss · feeds</div>
+            </div>
+          </div>
+          <ul class="pad-card-features">
+            <li>Custom RSS feed aggregator</li>
+            <li>Add any feed via URL</li>
+            <li>Clean article reading view</li>
+            <li>Refresh on demand or auto-update</li>
+          </ul>
+        </div>
+
+        <div class="pad-card">
+          <div class="pad-card-hdr">
+            <div class="pad-card-icon">⏱</div>
+            <div class="pad-card-hdr-text">
+              <div class="pad-card-name">Pomodoro</div>
+              <div class="pad-card-subtitle">focus · timer</div>
+            </div>
+          </div>
+          <ul class="pad-card-features">
+            <li>Built-in 25/5 Pomodoro timer</li>
+            <li>Always visible in the top bar</li>
+            <li>Session counter across the day</li>
+            <li>Audio and visual break alerts</li>
+            <li>Customisable session length</li>
+          </ul>
+        </div>
+
+        <div class="pad-card">
+          <div class="pad-card-hdr">
+            <div class="pad-card-icon">🎨</div>
+            <div class="pad-card-hdr-text">
+              <div class="pad-card-name">Mood &amp; Themes</div>
+              <div class="pad-card-subtitle">style · personalise</div>
+            </div>
+          </div>
+          <ul class="pad-card-features">
+            <li>10+ hand-crafted colour themes</li>
+            <li>Switch themes in one click</li>
+            <li>Theme persists across sessions</li>
+            <li>Column opacity and accent control</li>
+            <li>Light and dark variants</li>
+          </ul>
+        </div>
+
+        <div class="pad-card">
+          <div class="pad-card-hdr">
+            <div class="pad-card-icon">🔗</div>
+            <div class="pad-card-hdr-text">
+              <div class="pad-card-name">Share Links</div>
+              <div class="pad-card-subtitle">share · collaborate</div>
+            </div>
+          </div>
+          <ul class="pad-card-features">
+            <li>Generate a public link for any pad</li>
+            <li>Viewers need no account</li>
+            <li>Revoke links at any time</li>
+            <li>Works for tasks, notes, and lists</li>
+          </ul>
+        </div>
+
       </div>
     </div>
   </section>
@@ -677,12 +975,12 @@
   <!-- BOTTOM CTA -->
   <section class="bottom-cta">
     <h2>Start writing. Right now.</h2>
-    <p>Free forever. Open source. No fluff.</p>
+    <p>One workspace for every part of your life — free to get started.</p>
     <div style="display:flex;gap:12px;justify-content:center;">
-      <a href="#demo" class="btn-primary">Open cloudpad →</a>
-      <a href="https://github.com/bingleyit/cloudpad" target="_blank" class="btn-secondary">
-        <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.11.82-.26.82-.58v-2.03c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.5 1 .1-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 013-.4c1.02.01 2.04.14 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
-        Star on GitHub
+      <a href="https://workspace.cloudpadapp.com" class="btn-primary">Open cloudpad →</a>
+      <a href="#demo" class="btn-secondary">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        See the demo
       </a>
     </div>
   </section>
@@ -692,8 +990,8 @@
     <a href="#" class="footer-logo">cloudpad</a>
     <ul class="footer-links">
       <li><a href="#features">Features</a></li>
+      <li><a href="#pad-types">All Pads</a></li>
       <li><a href="#demo">Demo</a></li>
-      <li><a href="https://github.com/bingleyit/cloudpad" target="_blank">GitHub</a></li>
     </ul>
     <span class="footer-copy">built with ☁️ · 2025</span>
   </footer>
