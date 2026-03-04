@@ -81,10 +81,10 @@
 
     /* ── HERO ─────────────────────────────── */
     .hero {
-      padding: 120px 40px 60px;
+      padding: 120px 40px 72px;
       display: flex; flex-direction: column;
       align-items: center; text-align: center;
-      max-width: 1200px; margin: 0 auto;
+      max-width: 900px; margin: 0 auto;
     }
     .hero-label {
       font-family: var(--font-mono);
@@ -132,8 +132,13 @@
     .btn-secondary:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
 
     /* ── HERO DEMO (desktop) ──────────────── */
+    .demo-full-wrap {
+      padding: 0 5vw 80px;
+      border-top: 1px solid var(--border-light);
+      background: var(--bg);
+    }
     .hero-demo {
-      width: 100%; max-width: 1100px;
+      width: 100%;
       border-radius: 16px;
       border: 1px solid var(--border);
       box-shadow: 0 24px 80px rgba(0,108,209,0.12), 0 4px 16px rgba(0,0,0,0.06);
@@ -553,9 +558,11 @@
         Live demo
       </a>
     </div>
+  </section>
 
-    <!-- Desktop demo iframe -->
-    <div class="hero-demo" id="demo">
+  <!-- Desktop demo iframe — full width (90vw with 5% gutters) -->
+  <div class="demo-full-wrap" id="demo">
+    <div class="hero-demo">
       <div class="hero-demo-bar">
         <div class="demo-dot red"></div>
         <div class="demo-dot yellow"></div>
@@ -569,7 +576,7 @@
         allow="fullscreen"
       ></iframe>
     </div>
-  </section>
+  </div>
 
   <!-- MOBILE DEMO -->
   <section class="mobile-demo-section">
