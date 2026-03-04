@@ -3,27 +3,731 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Website</title>
+  <title>cloudpad — a mood-based notepad</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Inter:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background: #0f0f0f;
-      color: #f0f0f0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      text-align: center;
-      padding: 2rem;
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --accent: #006cd1;
+      --accent-light: #e8f1fb;
+      --bg: #ffffff;
+      --surface: #fafafa;
+      --border: #e8e4de;
+      --border-light: #f0ece6;
+      --text: #1a1714;
+      --text-dim: #9a9490;
+      --text-light: #c4bfb8;
+      --font-ui: 'Inter', sans-serif;
+      --font-logo: 'Caveat', cursive;
+      --font-mono: 'DM Mono', monospace;
     }
-    h1 { font-size: 3rem; font-weight: 700; margin-bottom: 1rem; }
-    p { font-size: 1.2rem; color: #999; max-width: 500px; }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-ui);
+      background: var(--bg);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ─────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      height: 56px;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 40px;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-light);
+    }
+    .nav-logo {
+      font-family: var(--font-logo);
+      font-size: 1.5rem; font-weight: 700;
+      color: var(--accent); text-decoration: none;
+      letter-spacing: -0.5px;
+    }
+    .nav-links {
+      display: flex; align-items: center; gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.78rem; font-weight: 500;
+      color: var(--text-dim); text-decoration: none;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      transition: color 0.15s;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .nav-cta {
+      background: var(--accent); color: #fff;
+      font-size: 0.78rem; font-weight: 500;
+      padding: 8px 18px; border-radius: 8px;
+      text-decoration: none; letter-spacing: 0.03em;
+      transition: filter 0.15s;
+    }
+    .nav-cta:hover { filter: brightness(1.1); }
+
+    /* ── HERO ─────────────────────────────── */
+    .hero {
+      padding: 140px 40px 80px;
+      display: flex; flex-direction: column;
+      align-items: center; text-align: center;
+      max-width: 1100px; margin: 0 auto;
+    }
+    .hero-label {
+      font-family: var(--font-mono);
+      font-size: 0.68rem; font-weight: 500;
+      color: var(--accent); letter-spacing: 0.14em;
+      text-transform: uppercase;
+      background: var(--accent-light);
+      padding: 4px 12px; border-radius: 20px;
+      margin-bottom: 28px;
+    }
+    .hero h1 {
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-weight: 700; line-height: 1.08;
+      letter-spacing: -0.03em; color: var(--text);
+      max-width: 780px; margin-bottom: 20px;
+    }
+    .hero h1 span { color: var(--accent); }
+    .hero p {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      font-weight: 300; color: var(--text-dim);
+      max-width: 520px; line-height: 1.7;
+      margin-bottom: 40px;
+    }
+    .hero-btns {
+      display: flex; gap: 12px; align-items: center;
+      margin-bottom: 72px;
+    }
+    .btn-primary {
+      background: var(--accent); color: #fff;
+      font-size: 0.92rem; font-weight: 500;
+      padding: 13px 28px; border-radius: 10px;
+      text-decoration: none;
+      transition: filter 0.15s, transform 0.15s;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .btn-primary:hover { filter: brightness(1.1); transform: translateY(-1px); }
+    .btn-secondary {
+      background: none; color: var(--text);
+      font-size: 0.92rem; font-weight: 400;
+      padding: 13px 24px; border-radius: 10px;
+      text-decoration: none; border: 1px solid var(--border);
+      transition: border-color 0.15s, color 0.15s, transform 0.15s;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .btn-secondary:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
+
+    /* Hero screenshot */
+    .hero-screen {
+      width: 100%; max-width: 960px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      box-shadow: 0 24px 80px rgba(0,108,209,0.12), 0 4px 16px rgba(0,0,0,0.06);
+      overflow: hidden;
+      position: relative;
+    }
+    .hero-screen-bar {
+      height: 40px;
+      background: var(--accent);
+      display: flex; align-items: center;
+      padding: 0 16px; gap: 8px;
+    }
+    .hero-screen-dot {
+      width: 10px; height: 10px; border-radius: 50%;
+      background: rgba(255,255,255,0.35);
+    }
+    .hero-screen-logo {
+      font-family: var(--font-logo);
+      font-size: 1rem; font-weight: 700;
+      color: #fff; margin-left: 8px;
+    }
+    .hero-screen-body {
+      background: var(--bg);
+      display: grid; grid-template-columns: repeat(7, 1fr);
+      gap: 0;
+    }
+    .mock-day {
+      padding: 14px 12px;
+      border-right: 1px solid var(--border-light);
+      min-height: 200px;
+    }
+    .mock-day:last-child { border-right: none; }
+    .mock-day-hdr {
+      font-size: 0.6rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      color: var(--text-dim); margin-bottom: 10px;
+    }
+    .mock-day.today .mock-day-hdr { color: var(--accent); border-bottom: 2px solid var(--accent); padding-bottom: 6px; }
+    .mock-task {
+      font-size: 0.62rem; color: var(--text);
+      padding: 4px 0;
+      border-bottom: 1px solid var(--border-light);
+      line-height: 1.4;
+    }
+    .mock-task.done { color: var(--text-light); text-decoration: line-through; }
+    .mock-task.accent { color: var(--accent); font-weight: 500; }
+
+    /* ── DIVIDER ──────────────────────────── */
+    .divider {
+      max-width: 1100px; margin: 0 auto;
+      border: none; border-top: 1px solid var(--border-light);
+    }
+
+    /* ── FEATURES ─────────────────────────── */
+    .features { max-width: 1100px; margin: 0 auto; padding: 0 40px; }
+    .features-header {
+      text-align: center; padding: 80px 0 60px;
+    }
+    .features-header h2 {
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 700; letter-spacing: -0.03em;
+      color: var(--text); margin-bottom: 14px;
+    }
+    .features-header p {
+      font-size: 1rem; color: var(--text-dim);
+      font-weight: 300; max-width: 440px;
+      margin: 0 auto; line-height: 1.7;
+    }
+
+    .feature-row {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 60px; align-items: center;
+      padding: 60px 0;
+      border-top: 1px solid var(--border-light);
+    }
+    .feature-row.flip { direction: rtl; }
+    .feature-row.flip > * { direction: ltr; }
+    .feature-text {}
+    .feature-tag {
+      font-family: var(--font-mono);
+      font-size: 0.65rem; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--accent);
+      margin-bottom: 14px; display: block;
+    }
+    .feature-text h3 {
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
+      font-weight: 700; letter-spacing: -0.025em;
+      line-height: 1.2; color: var(--text);
+      margin-bottom: 14px;
+    }
+    .feature-text p {
+      font-size: 0.95rem; color: var(--text-dim);
+      font-weight: 300; line-height: 1.8;
+      margin-bottom: 20px;
+    }
+    .feature-pills {
+      display: flex; flex-wrap: wrap; gap: 8px;
+    }
+    .feature-pill {
+      font-size: 0.72rem; font-weight: 500;
+      padding: 5px 12px; border-radius: 20px;
+      background: var(--surface); border: 1px solid var(--border);
+      color: var(--text-dim);
+    }
+
+    /* Feature mock cards */
+    .feature-visual {
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+    }
+    .fv-bar {
+      height: 36px; background: var(--accent);
+      display: flex; align-items: center; padding: 0 14px;
+    }
+    .fv-bar span {
+      font-family: var(--font-logo); font-size: 0.9rem;
+      font-weight: 700; color: #fff;
+    }
+    .fv-body { padding: 20px; }
+
+    /* Mood picker mock */
+    .mood-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 8px; margin-bottom: 14px;
+    }
+    .mood-swatch {
+      height: 44px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; cursor: pointer;
+      transition: transform 0.15s;
+      border: 2px solid transparent;
+    }
+    .mood-swatch.active { border-color: var(--text); transform: scale(1.05); }
+    .mood-swatches-row { display: flex; gap: 8px; flex-wrap: wrap; }
+    .theme-chip {
+      padding: 5px 12px; border-radius: 20px;
+      font-size: 0.68rem; font-weight: 500;
+      border: 1.5px solid var(--border);
+      color: var(--text-dim); cursor: pointer;
+    }
+    .theme-chip.active {
+      background: var(--accent); color: #fff; border-color: var(--accent);
+    }
+
+    /* Pads mock */
+    .pads-list { display: flex; flex-direction: column; gap: 6px; }
+    .pad-item {
+      display: flex; align-items: center; gap: 10px;
+      padding: 8px 12px; border-radius: 8px;
+      background: var(--bg); border: 1px solid var(--border-light);
+      font-size: 0.75rem; color: var(--text);
+    }
+    .pad-item.active { background: var(--accent-light); border-color: var(--accent); color: var(--accent); }
+    .pad-icon { font-size: 1rem; }
+
+    /* Share mock */
+    .share-note {
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: 10px; padding: 14px;
+      font-size: 0.78rem; color: var(--text);
+      line-height: 1.6; margin-bottom: 14px;
+    }
+    .share-link-row {
+      display: flex; gap: 8px;
+    }
+    .share-link-input {
+      flex: 1; background: var(--surface);
+      border: 1px solid var(--border); border-radius: 7px;
+      padding: 7px 12px; font-size: 0.7rem;
+      font-family: var(--font-mono); color: var(--text-dim);
+    }
+    .share-link-btn {
+      background: var(--accent); color: #fff;
+      border: none; border-radius: 7px;
+      padding: 7px 14px; font-size: 0.72rem;
+      cursor: pointer; font-family: var(--font-ui);
+    }
+
+    /* Pomodoro mock */
+    .pomo-mock {
+      text-align: center; padding: 10px 0 4px;
+    }
+    .pomo-clock {
+      font-size: 2.8rem; font-weight: 300;
+      letter-spacing: -0.04em; color: var(--text);
+      line-height: 1; margin-bottom: 8px;
+    }
+    .pomo-label {
+      font-family: var(--font-mono); font-size: 0.62rem;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--text-dim); margin-bottom: 16px;
+    }
+    .pomo-progress {
+      height: 3px; background: var(--border);
+      border-radius: 2px; overflow: hidden;
+      margin-bottom: 16px;
+    }
+    .pomo-progress-fill {
+      height: 100%; width: 62%;
+      background: var(--accent); border-radius: 2px;
+    }
+    .pomo-btns { display: flex; gap: 8px; justify-content: center; }
+    .pomo-mock-btn {
+      padding: 6px 16px; border-radius: 8px;
+      font-size: 0.72rem; cursor: pointer;
+      border: 1.5px solid var(--border); background: none;
+      color: var(--text); font-family: var(--font-ui);
+    }
+    .pomo-mock-btn.primary {
+      background: var(--accent); color: #fff; border-color: var(--accent);
+    }
+    .pomo-sessions {
+      font-family: var(--font-mono); font-size: 0.6rem;
+      color: var(--text-light); margin-top: 12px;
+      text-align: center;
+    }
+
+    /* ── DEMO SECTION ─────────────────────── */
+    #demo {
+      padding: 80px 0 0;
+      border-top: 1px solid var(--border-light);
+    }
+    .demo-header {
+      max-width: 1100px; margin: 0 auto;
+      padding: 0 40px 48px;
+      text-align: center;
+    }
+    .demo-header h2 {
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 700; letter-spacing: -0.03em;
+      margin-bottom: 14px;
+    }
+    .demo-header p {
+      font-size: 1rem; color: var(--text-dim);
+      font-weight: 300; line-height: 1.7;
+    }
+    .demo-frame-wrap {
+      max-width: 1200px; margin: 0 auto;
+      padding: 0 40px 80px;
+    }
+    .demo-frame-chrome {
+      border-radius: 16px 16px 0 0;
+      border: 1px solid var(--border);
+      border-bottom: none;
+      overflow: hidden;
+      box-shadow: 0 -4px 40px rgba(0,108,209,0.08), 0 0 0 1px var(--border);
+    }
+    .demo-chrome-bar {
+      height: 44px; background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; padding: 0 16px; gap: 8px;
+    }
+    .chrome-dot { width: 11px; height: 11px; border-radius: 50%; }
+    .chrome-dot.red { background: #ff5f57; }
+    .chrome-dot.yellow { background: #febc2e; }
+    .chrome-dot.green { background: #28c840; }
+    .chrome-url {
+      flex: 1; max-width: 380px; margin: 0 auto;
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: 6px; height: 26px;
+      display: flex; align-items: center; padding: 0 10px;
+      font-family: var(--font-mono); font-size: 0.65rem;
+      color: var(--text-dim);
+    }
+    .demo-iframe {
+      width: 100%;
+      height: 680px;
+      border: none;
+      display: block;
+      background: var(--bg);
+    }
+
+    /* ── BOTTOM CTA ───────────────────────── */
+    .bottom-cta {
+      padding: 100px 40px;
+      text-align: center;
+      background: var(--surface);
+      border-top: 1px solid var(--border-light);
+    }
+    .bottom-cta h2 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 700; letter-spacing: -0.03em;
+      margin-bottom: 16px;
+    }
+    .bottom-cta p {
+      font-size: 1rem; color: var(--text-dim);
+      font-weight: 300; margin-bottom: 36px;
+      line-height: 1.7;
+    }
+
+    /* ── FOOTER ───────────────────────────── */
+    footer {
+      border-top: 1px solid var(--border-light);
+      padding: 32px 40px;
+      display: flex; align-items: center; justify-content: space-between;
+      max-width: 1100px; margin: 0 auto;
+    }
+    .footer-logo {
+      font-family: var(--font-logo);
+      font-size: 1.2rem; font-weight: 700;
+      color: var(--accent); text-decoration: none;
+    }
+    .footer-links {
+      display: flex; gap: 24px; list-style: none;
+    }
+    .footer-links a {
+      font-size: 0.75rem; color: var(--text-dim);
+      text-decoration: none; letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: color 0.15s;
+    }
+    .footer-links a:hover { color: var(--text); }
+    .footer-copy {
+      font-size: 0.72rem; color: var(--text-light);
+      font-family: var(--font-mono);
+    }
+
+    /* ── RESPONSIVE ───────────────────────── */
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      .hero { padding: 100px 20px 60px; }
+      .features { padding: 0 20px; }
+      .feature-row { grid-template-columns: 1fr; gap: 32px; }
+      .feature-row.flip { direction: ltr; }
+      .hero-screen-body { grid-template-columns: repeat(3, 1fr); }
+      .mock-day:nth-child(n+4) { display: none; }
+      .demo-frame-wrap { padding: 0 20px 60px; }
+      footer { flex-direction: column; gap: 20px; text-align: center; }
+    }
   </style>
 </head>
 <body>
-  <h1>Hello, World!</h1>
-  <p>This is my website. Edit this file to make it your own.</p>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">cloudpad</a>
+    <ul class="nav-links">
+      <li><a href="#features">Features</a></li>
+      <li><a href="#demo">Demo</a></li>
+      <li><a href="https://github.com/bingleyit/cloudpad" target="_blank">GitHub</a></li>
+    </ul>
+    <a href="#demo" class="nav-cta">Try it free →</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-label">mood-based notepad · rebuilt 2025</div>
+    <h1>Your pad,<br>your <span>mood</span>.</h1>
+    <p>A beautifully designed notepad that adapts to how you feel. Plan your week, capture ideas, and stay focused — without the noise.</p>
+    <div class="hero-btns">
+      <a href="#demo" class="btn-primary">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        Live Demo
+      </a>
+      <a href="https://github.com/bingleyit/cloudpad" target="_blank" class="btn-secondary">
+        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.11.82-.26.82-.58v-2.03c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.5 1 .1-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 013-.4c1.02.01 2.04.14 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
+        View on GitHub
+      </a>
+    </div>
+
+    <!-- Hero mockup -->
+    <div class="hero-screen">
+      <div class="hero-screen-bar">
+        <div class="hero-screen-dot"></div>
+        <div class="hero-screen-dot"></div>
+        <div class="hero-screen-dot"></div>
+        <span class="hero-screen-logo">cloudpad</span>
+      </div>
+      <div class="hero-screen-body">
+        <div class="mock-day">
+          <div class="mock-day-hdr">Mon</div>
+          <div class="mock-task done">Design review</div>
+          <div class="mock-task done">Update docs</div>
+          <div class="mock-task">Team standup</div>
+        </div>
+        <div class="mock-day">
+          <div class="mock-day-hdr">Tue</div>
+          <div class="mock-task done">Fix auth bug</div>
+          <div class="mock-task">Write tests</div>
+        </div>
+        <div class="mock-day today">
+          <div class="mock-day-hdr">Wed · today</div>
+          <div class="mock-task accent">Deploy v2.1</div>
+          <div class="mock-task">Client call 2pm</div>
+          <div class="mock-task">Review PRs</div>
+        </div>
+        <div class="mock-day">
+          <div class="mock-day-hdr">Thu</div>
+          <div class="mock-task">Sprint planning</div>
+          <div class="mock-task">Blog post draft</div>
+        </div>
+        <div class="mock-day">
+          <div class="mock-day-hdr">Fri</div>
+          <div class="mock-task">Weekly review</div>
+        </div>
+        <div class="mock-day">
+          <div class="mock-day-hdr">Sat</div>
+          <div class="mock-task">Side project</div>
+        </div>
+        <div class="mock-day">
+          <div class="mock-day-hdr">Sun</div>
+          <div class="mock-task">Rest 🌿</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- FEATURES -->
+  <section id="features" class="features">
+    <div class="features-header">
+      <h2>Everything you need.<br>Nothing you don't.</h2>
+      <p>Built around the way your brain actually works — day by day, mood by mood.</p>
+    </div>
+
+    <!-- Feature 1: Weekly pad -->
+    <div class="feature-row">
+      <div class="feature-text">
+        <span class="feature-tag">01 · Planning</span>
+        <h3>Your whole week,<br>at a glance.</h3>
+        <p>A clean 7-column weekly view keeps everything visible without overwhelming you. Tasks that don't get done automatically roll forward — no re-entering, no friction.</p>
+        <div class="feature-pills">
+          <span class="feature-pill">Weekly view</span>
+          <span class="feature-pill">Inbox pad</span>
+          <span class="feature-pill">Someday list</span>
+          <span class="feature-pill">Life pad</span>
+        </div>
+      </div>
+      <div class="feature-visual">
+        <div class="fv-bar"><span>cloudpad</span></div>
+        <div class="fv-body">
+          <div class="pads-list">
+            <div class="pad-item active">
+              <span class="pad-icon">📅</span> Weekly pad
+            </div>
+            <div class="pad-item">
+              <span class="pad-icon">📥</span> Inbox
+            </div>
+            <div class="pad-item">
+              <span class="pad-icon">🌤</span> Someday
+            </div>
+            <div class="pad-item">
+              <span class="pad-icon">🌱</span> Life
+            </div>
+            <div class="pad-item">
+              <span class="pad-icon">🛒</span> Shopping
+            </div>
+            <div class="pad-item">
+              <span class="pad-icon">💡</span> Ideas
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Feature 2: Mood & themes -->
+    <div class="feature-row flip">
+      <div class="feature-text">
+        <span class="feature-tag">02 · Mood</span>
+        <h3>Set the mood.<br>Own the day.</h3>
+        <p>Pick a theme that matches how you feel right now. Cloudpad adapts its colour palette to your mood — because how your workspace looks changes how you think.</p>
+        <div class="feature-pills">
+          <span class="feature-pill">🌸 Blossom</span>
+          <span class="feature-pill">🌊 Ocean</span>
+          <span class="feature-pill">🌿 Forest</span>
+          <span class="feature-pill">🌙 Midnight</span>
+        </div>
+      </div>
+      <div class="feature-visual">
+        <div class="fv-bar"><span>cloudpad</span></div>
+        <div class="fv-body">
+          <div class="mood-grid">
+            <div class="mood-swatch active" style="background:#fce4ec;">🌸</div>
+            <div class="mood-swatch" style="background:#e3f2fd;">🌊</div>
+            <div class="mood-swatch" style="background:#e8f5e9;">🌿</div>
+            <div class="mood-swatch" style="background:#1a1a2e;color:#fff;">🌙</div>
+            <div class="mood-swatch" style="background:#fff8e1;">☀️</div>
+            <div class="mood-swatch" style="background:#f3e5f5;">💜</div>
+            <div class="mood-swatch" style="background:#fbe9e7;">🔥</div>
+            <div class="mood-swatch" style="background:#fafafa;">⬜</div>
+          </div>
+          <div class="mood-swatches-row">
+            <span class="theme-chip active">Blossom</span>
+            <span class="theme-chip">Ocean</span>
+            <span class="theme-chip">Forest</span>
+            <span class="theme-chip">Night</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Feature 3: Share notes -->
+    <div class="feature-row">
+      <div class="feature-text">
+        <span class="feature-tag">03 · Share</span>
+        <h3>One link.<br>Instantly shared.</h3>
+        <p>Share any note or pad with a single public link. No accounts needed for viewers — perfect for sharing shopping lists, ideas, or plans with anyone.</p>
+        <div class="feature-pills">
+          <span class="feature-pill">Public links</span>
+          <span class="feature-pill">No login needed</span>
+          <span class="feature-pill">Real-time</span>
+        </div>
+      </div>
+      <div class="feature-visual">
+        <div class="fv-bar"><span>cloudpad</span></div>
+        <div class="fv-body">
+          <div class="share-note">
+            🛒 Weekend shopping<br>
+            — Sourdough bread<br>
+            — Olive oil<br>
+            — Cherry tomatoes<br>
+            — Dark chocolate
+          </div>
+          <div class="share-link-row">
+            <div class="share-link-input">cloudpad.app/s/x7k2p</div>
+            <button class="share-link-btn">Copy link</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Feature 4: Pomodoro -->
+    <div class="feature-row flip">
+      <div class="feature-text">
+        <span class="feature-tag">04 · Focus</span>
+        <h3>Stay in flow.<br>Built-in Pomodoro.</h3>
+        <p>A minimal Pomodoro timer lives right in the top bar — no switching tabs, no distractions. Work in focused sprints and track your sessions across the day.</p>
+        <div class="feature-pills">
+          <span class="feature-pill">25 min sprints</span>
+          <span class="feature-pill">Break reminders</span>
+          <span class="feature-pill">Session tracking</span>
+        </div>
+      </div>
+      <div class="feature-visual">
+        <div class="fv-bar"><span>cloudpad</span></div>
+        <div class="fv-body">
+          <div class="pomo-mock">
+            <div class="pomo-clock">18:43</div>
+            <div class="pomo-label">Focus session</div>
+            <div class="pomo-progress"><div class="pomo-progress-fill"></div></div>
+            <div class="pomo-btns">
+              <button class="pomo-mock-btn primary">Pause</button>
+              <button class="pomo-mock-btn">Reset</button>
+            </div>
+            <div class="pomo-sessions">● ● ● ○  session 3 of 4</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LIVE DEMO -->
+  <section id="demo">
+    <div class="demo-header">
+      <h2>Try it right now.</h2>
+      <p>No signup required. Your notes are saved automatically.</p>
+    </div>
+    <div class="demo-frame-wrap">
+      <div class="demo-frame-chrome">
+        <div class="demo-chrome-bar">
+          <div class="chrome-dot red"></div>
+          <div class="chrome-dot yellow"></div>
+          <div class="chrome-dot green"></div>
+          <div class="chrome-url">🔒 your-cloudpad-url.railway.app</div>
+        </div>
+        <!-- 🔧 Replace the src below with your Railway cloudpad URL -->
+        <iframe
+          class="demo-iframe"
+          src="https://your-cloudpad-url.railway.app"
+          title="Cloudpad live demo"
+          allow="fullscreen"
+        ></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOTTOM CTA -->
+  <section class="bottom-cta">
+    <h2>Start writing. Right now.</h2>
+    <p>Free forever. Open source. No fluff.</p>
+    <div style="display:flex;gap:12px;justify-content:center;">
+      <a href="#demo" class="btn-primary">Open cloudpad →</a>
+      <a href="https://github.com/bingleyit/cloudpad" target="_blank" class="btn-secondary">
+        <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.11.82-.26.82-.58v-2.03c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.5 1 .1-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 013-.4c1.02.01 2.04.14 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
+        Star on GitHub
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <a href="#" class="footer-logo">cloudpad</a>
+    <ul class="footer-links">
+      <li><a href="#features">Features</a></li>
+      <li><a href="#demo">Demo</a></li>
+      <li><a href="https://github.com/bingleyit/cloudpad" target="_blank">GitHub</a></li>
+    </ul>
+    <span class="footer-copy">built with ☁️ · 2025</span>
+  </footer>
+
 </body>
 </html>
