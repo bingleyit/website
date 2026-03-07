@@ -152,14 +152,26 @@
       display: flex; align-items: center;
       padding: 0 14px; gap: 7px;
     }
-    /* Screenshot mockup images */
+    /* Live iframe mockups */
     .mockup-iframe-outer {
       height: 380px;
       overflow: hidden;
       line-height: 0;
       background: var(--bg);
+      position: relative;
     }
-    .mockup-iframe-outer img { width: 100%; display: block; }
+    .mockup-screen-iframe {
+      width: 1300px; height: 760px;
+      border: none; display: block;
+      transform: scale(0.5); transform-origin: top left;
+      pointer-events: none;
+    }
+    .mockup-phone-screen-iframe {
+      width: 375px; height: 812px;
+      border: none; display: block;
+      transform: scale(0.475); transform-origin: top left;
+      pointer-events: none;
+    }
     .mockup-phone {
       position: absolute; right: -10px; bottom: -32px;
       background: #1a1714; border-radius: 44px; padding: 13px;
@@ -199,7 +211,6 @@
     /* ── HERO DEMO (desktop) ──────────────── */
     .demo-full-wrap {
       padding: 0 5vw 80px;
-      border-top: 1px solid var(--border-light);
       background: var(--bg);
     }
     .hero-demo {
@@ -617,8 +628,8 @@
     <!-- Left: text -->
     <div class="hero-text">
       <div class="hero-label">mood-based notepad · rebuilt 2025</div>
-      <h1>Beautifully simple<br><span class="hero-type-line"><span class="typed-word"></span><span class="typed-cursor"></span></span>.</h1>
-      <p>A beautifully designed notepad that adapts to how you feel. Plan your week, capture ideas, and stay focused — without the noise.<br><br><strong style="color:var(--text);font-weight:600;">Community driven development — your feedback guides our features.</strong></p>
+      <h1>Beautifully simple<br><span class="hero-type-line"><span class="typed-word"></span><span class="typed-cursor"></span></span></h1>
+      <p><strong style="color:var(--text);font-weight:600;">Community driven development — your feedback guides our features.</strong></p>
       <div class="hero-btns">
         <a href="https://workspace.cloudpadapp.com" class="btn-primary">
           <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
@@ -641,13 +652,13 @@
           <div class="demo-url">🔒 cloudpad demo</div>
         </div>
         <div class="mockup-iframe-outer">
-          <img src="screenshot-desktop.png" alt="cloudpad app — weekly task view">
+          <iframe class="mockup-screen-iframe" src="demo.html" title="cloudpad preview" tabindex="-1"></iframe>
         </div>
       </div>
       <div class="mockup-phone">
         <div class="mockup-phone-notch"></div>
         <div class="mockup-phone-screen">
-          <img src="screenshot-mobile.png" alt="cloudpad mobile app">
+          <iframe class="mockup-phone-screen-iframe" src="demo.html" title="cloudpad mobile preview" tabindex="-1"></iframe>
         </div>
       </div>
     </div>
@@ -662,10 +673,6 @@
         <div class="demo-dot green"></div>
         <div class="demo-url">🔒 cloudpad demo</div>
       </div>
-      <div class="demo-live-hint">
-        <span class="demo-live-dot"></span>
-        Live demo — fully interactive, move and click anything
-      </div>
       <iframe
         class="hero-iframe"
         src="demo.html"
@@ -674,6 +681,136 @@
       ></iframe>
     </div>
   </div>
+
+  <!-- PRICING -->
+  <section class="pricing-section" id="pricing">
+    <h2>Simple, honest pricing.</h2>
+    <p class="pricing-sub">Start free, upgrade when you're ready — or grab a lifetime deal and never think about it again.</p>
+
+    <div class="pricing-table-wrap">
+      <table class="pricing-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>
+              <div class="pt-tier-wrap">
+                <div class="pt-tier-name">Free</div>
+                <div class="pt-tier-price"><sup>$</sup>0</div>
+                <a href="https://workspace.cloudpadapp.com" class="pt-cta">Get started free</a>
+              </div>
+            </th>
+            <th>
+              <div class="pt-tier-wrap featured">
+                <div class="pt-badge">Most popular</div>
+                <div class="pt-tier-name">Pro</div>
+                <div class="pt-tier-price"><sup>$</sup>2<span class="period">/mo</span></div>
+                <a href="https://workspace.cloudpadapp.com" class="pt-cta featured">Start Pro</a>
+              </div>
+            </th>
+            <th>
+              <div class="pt-tier-wrap">
+                <div class="pt-tier-name">Lifetime</div>
+                <div class="pt-tier-price"><sup>$</sup>99</div>
+                <a href="https://workspace.cloudpadapp.com" class="pt-cta">Get lifetime access</a>
+              </div>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Weekly planner</td>
+            <td class="pt-yes">✓</td>
+            <td class="pt-yes pt-pro-col">✓</td>
+            <td class="pt-yes">✓</td>
+          </tr>
+          <tr>
+            <td>Calendar</td>
+            <td class="pt-yes">✓</td>
+            <td class="pt-yes pt-pro-col">✓</td>
+            <td class="pt-yes">✓</td>
+          </tr>
+          <tr>
+            <td>Notes</td>
+            <td class="pt-yes">✓</td>
+            <td class="pt-yes pt-pro-col">✓</td>
+            <td class="pt-yes">✓</td>
+          </tr>
+          <tr>
+            <td>Custom Lists</td>
+            <td class="pt-no">—</td>
+            <td class="pt-yes pt-pro-col">✓</td>
+            <td class="pt-yes">✓</td>
+          </tr>
+          <tr>
+            <td>Custom Themes</td>
+            <td class="pt-no">—</td>
+            <td class="pt-yes pt-pro-col">✓</td>
+            <td class="pt-yes">✓</td>
+          </tr>
+          <tr>
+            <td>Pomodoro</td>
+            <td class="pt-yes">✓</td>
+            <td class="pt-yes pt-pro-col">✓</td>
+            <td class="pt-yes">✓</td>
+          </tr>
+          <tr>
+            <td>Mood Streaming Sounds</td>
+            <td class="pt-yes">✓</td>
+            <td class="pt-yes pt-pro-col">✓</td>
+            <td class="pt-yes">✓</td>
+          </tr>
+          <tr>
+            <td>Shopping lists</td>
+            <td class="pt-yes">✓</td>
+            <td class="pt-yes pt-pro-col">✓</td>
+            <td class="pt-yes">✓</td>
+          </tr>
+          <tr>
+            <td>Share Lists</td>
+            <td class="pt-yes">✓</td>
+            <td class="pt-yes pt-pro-col">✓</td>
+            <td class="pt-yes">✓</td>
+          </tr>
+          <tr>
+            <td>Projects &amp; Kanban</td>
+            <td class="pt-no">—</td>
+            <td class="pt-yes pt-pro-col">✓</td>
+            <td class="pt-yes">✓</td>
+          </tr>
+          <tr>
+            <td>Recipe pad</td>
+            <td class="pt-yes">✓</td>
+            <td class="pt-yes pt-pro-col">✓</td>
+            <td class="pt-yes">✓</td>
+          </tr>
+          <tr>
+            <td>Personal Finance Tracking</td>
+            <td class="pt-no">—</td>
+            <td class="pt-yes pt-pro-col">✓</td>
+            <td class="pt-yes">✓</td>
+          </tr>
+          <tr>
+            <td>News Feed</td>
+            <td class="pt-no">—</td>
+            <td class="pt-yes pt-pro-col">✓</td>
+            <td class="pt-yes">✓</td>
+          </tr>
+          <tr>
+            <td>Travel planning</td>
+            <td class="pt-yes">✓</td>
+            <td class="pt-yes pt-pro-col">✓</td>
+            <td class="pt-yes">✓</td>
+          </tr>
+          <tr>
+            <td>Codes &amp; Logins</td>
+            <td class="pt-no">—</td>
+            <td class="pt-yes pt-pro-col">✓</td>
+            <td class="pt-yes">✓</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
 
   <hr class="divider">
 
@@ -856,17 +993,17 @@
 
         <div class="pad-card">
           <div class="pad-card-hdr">
-            <div class="pad-card-icon">&lt;/&gt;</div>
+            <div class="pad-card-icon">🔑</div>
             <div class="pad-card-hdr-text">
-              <div class="pad-card-name">Codes</div>
-              <div class="pad-card-subtitle">snippets · dev</div>
+              <div class="pad-card-name">Codes &amp; Logins</div>
+              <div class="pad-card-subtitle">passwords · credentials</div>
             </div>
           </div>
           <ul class="pad-card-features">
-            <li>Store reusable code snippets</li>
-            <li>Monospace formatting out of the box</li>
-            <li>Tag by language or project</li>
-            <li>One-click copy to clipboard</li>
+            <li>Store passwords and login credentials</li>
+            <li>WiFi codes, card PINs, licence keys</li>
+            <li>Filter by category (web, app, wifi, card)</li>
+            <li>Encrypted and stored locally</li>
           </ul>
         </div>
 
@@ -937,136 +1074,6 @@
         </div>
 
       </div>
-    </div>
-  </section>
-
-  <!-- PRICING -->
-  <section class="pricing-section" id="pricing">
-    <h2>Simple, honest pricing.</h2>
-    <p class="pricing-sub">Start free, upgrade when you're ready — or grab a lifetime deal and never think about it again.</p>
-
-    <div class="pricing-table-wrap">
-      <table class="pricing-table">
-        <thead>
-          <tr>
-            <th></th>
-            <th>
-              <div class="pt-tier-wrap">
-                <div class="pt-tier-name">Free</div>
-                <div class="pt-tier-price"><sup>$</sup>0</div>
-                <a href="https://workspace.cloudpadapp.com" class="pt-cta">Get started free</a>
-              </div>
-            </th>
-            <th>
-              <div class="pt-tier-wrap featured">
-                <div class="pt-badge">Most popular</div>
-                <div class="pt-tier-name">Pro</div>
-                <div class="pt-tier-price"><sup>$</sup>2<span class="period">/mo</span></div>
-                <a href="https://workspace.cloudpadapp.com" class="pt-cta featured">Start Pro</a>
-              </div>
-            </th>
-            <th>
-              <div class="pt-tier-wrap">
-                <div class="pt-tier-name">Lifetime</div>
-                <div class="pt-tier-price"><sup>$</sup>99</div>
-                <a href="https://workspace.cloudpadapp.com" class="pt-cta">Get lifetime access</a>
-              </div>
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Weekly planner</td>
-            <td class="pt-yes">✓</td>
-            <td class="pt-yes pt-pro-col">✓</td>
-            <td class="pt-yes">✓</td>
-          </tr>
-          <tr>
-            <td>Calendar</td>
-            <td class="pt-yes">✓</td>
-            <td class="pt-yes pt-pro-col">✓</td>
-            <td class="pt-yes">✓</td>
-          </tr>
-          <tr>
-            <td>Notes</td>
-            <td class="pt-yes">✓</td>
-            <td class="pt-yes pt-pro-col">✓</td>
-            <td class="pt-yes">✓</td>
-          </tr>
-          <tr>
-            <td>Custom Lists</td>
-            <td class="pt-no">—</td>
-            <td class="pt-yes pt-pro-col">✓</td>
-            <td class="pt-yes">✓</td>
-          </tr>
-          <tr>
-            <td>Custom Themes</td>
-            <td class="pt-no">—</td>
-            <td class="pt-yes pt-pro-col">✓</td>
-            <td class="pt-yes">✓</td>
-          </tr>
-          <tr>
-            <td>Pomodoro</td>
-            <td class="pt-yes">✓</td>
-            <td class="pt-yes pt-pro-col">✓</td>
-            <td class="pt-yes">✓</td>
-          </tr>
-          <tr>
-            <td>Mood Streaming Sounds</td>
-            <td class="pt-yes">✓</td>
-            <td class="pt-yes pt-pro-col">✓</td>
-            <td class="pt-yes">✓</td>
-          </tr>
-          <tr>
-            <td>Shopping lists</td>
-            <td class="pt-yes">✓</td>
-            <td class="pt-yes pt-pro-col">✓</td>
-            <td class="pt-yes">✓</td>
-          </tr>
-          <tr>
-            <td>Share Lists</td>
-            <td class="pt-yes">✓</td>
-            <td class="pt-yes pt-pro-col">✓</td>
-            <td class="pt-yes">✓</td>
-          </tr>
-          <tr>
-            <td>Projects &amp; Kanban</td>
-            <td class="pt-no">—</td>
-            <td class="pt-yes pt-pro-col">✓</td>
-            <td class="pt-yes">✓</td>
-          </tr>
-          <tr>
-            <td>Recipe pad</td>
-            <td class="pt-yes">✓</td>
-            <td class="pt-yes pt-pro-col">✓</td>
-            <td class="pt-yes">✓</td>
-          </tr>
-          <tr>
-            <td>Personal Finance Tracking</td>
-            <td class="pt-no">—</td>
-            <td class="pt-yes pt-pro-col">✓</td>
-            <td class="pt-yes">✓</td>
-          </tr>
-          <tr>
-            <td>News Feed</td>
-            <td class="pt-no">—</td>
-            <td class="pt-yes pt-pro-col">✓</td>
-            <td class="pt-yes">✓</td>
-          </tr>
-          <tr>
-            <td>Travel planning</td>
-            <td class="pt-yes">✓</td>
-            <td class="pt-yes pt-pro-col">✓</td>
-            <td class="pt-yes">✓</td>
-          </tr>
-          <tr>
-            <td>Codes &amp; Logins</td>
-            <td class="pt-no">—</td>
-            <td class="pt-yes pt-pro-col">✓</td>
-            <td class="pt-yes">✓</td>
-          </tr>
-        </tbody>
-      </table>
     </div>
   </section>
 
