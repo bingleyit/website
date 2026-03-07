@@ -82,11 +82,15 @@
 
     /* ── HERO ─────────────────────────────── */
     .hero {
-      padding: 120px 40px 72px;
-      display: flex; flex-direction: column;
-      align-items: center; text-align: center;
-      max-width: 900px; margin: 0 auto;
+      padding: 120px 60px 80px;
+      display: grid;
+      grid-template-columns: 1fr 1.45fr;
+      gap: 60px;
+      align-items: center;
+      max-width: 1320px;
+      margin: 0 auto;
     }
+    .hero-text { display: flex; flex-direction: column; align-items: flex-start; }
     .hero-label {
       font-family: var(--font-mono);
       font-size: 0.68rem; font-weight: 500;
@@ -95,23 +99,101 @@
       background: var(--accent-light);
       padding: 4px 12px; border-radius: 20px;
       margin-bottom: 28px;
+      display: inline-block;
     }
     .hero h1 {
-      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-size: clamp(2.2rem, 3.8vw, 4rem);
       font-weight: 700; line-height: 1.08;
       letter-spacing: -0.03em; color: var(--text);
-      max-width: 780px; margin-bottom: 20px;
+      margin-bottom: 20px;
     }
     .hero h1 span { color: var(--accent); }
     .hero p {
-      font-size: clamp(1rem, 2vw, 1.2rem);
+      font-size: clamp(0.95rem, 1.4vw, 1.08rem);
       font-weight: 300; color: var(--text-dim);
-      max-width: 520px; line-height: 1.7;
+      line-height: 1.75;
       margin-bottom: 40px;
     }
     .hero-btns {
       display: flex; gap: 12px; align-items: center;
-      margin-bottom: 60px;
+      flex-wrap: wrap;
+    }
+
+    /* ── ROTATING WORD ────────────────────── */
+    .rotating-word {
+      display: inline-block;
+      transition: opacity 0.22s ease, transform 0.22s ease;
+    }
+    .rotating-word.rw-exit {
+      opacity: 0; transform: translateY(-7px);
+    }
+    .rotating-word.rw-enter {
+      opacity: 0; transform: translateY(7px);
+    }
+
+    /* ── HERO MOCKUPS ─────────────────────── */
+    .hero-mockups {
+      position: relative;
+      height: 460px;
+    }
+    .mockup-desktop {
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      box-shadow: 0 24px 72px rgba(0,108,209,0.14), 0 4px 18px rgba(0,0,0,0.07);
+      overflow: hidden;
+      position: absolute;
+      top: 0; left: 0; right: 56px;
+    }
+    .mockup-desktop-bar {
+      height: 38px;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center;
+      padding: 0 14px; gap: 7px;
+    }
+    .mockup-iframe-outer {
+      overflow: hidden;
+      position: relative;
+      background: var(--bg);
+    }
+    .mockup-iframe-outer iframe {
+      width: 1280px;
+      height: 900px;
+      border: none;
+      display: block;
+      transform-origin: top left;
+      pointer-events: none;
+    }
+    .mockup-phone {
+      position: absolute;
+      right: 0;
+      bottom: -28px;
+      background: #1a1714;
+      border-radius: 34px;
+      padding: 11px;
+      box-shadow: 0 24px 56px rgba(0,0,0,0.36), 0 0 0 1px rgba(255,255,255,0.07) inset;
+      z-index: 2;
+    }
+    .mockup-phone-notch {
+      width: 54px; height: 14px;
+      background: #1a1714;
+      border-radius: 0 0 10px 10px;
+      position: absolute; top: 11px; left: 50%; transform: translateX(-50%);
+      z-index: 3;
+    }
+    .mockup-phone-screen {
+      width: 136px; height: 256px;
+      border-radius: 24px;
+      overflow: hidden;
+      position: relative;
+      background: #fff;
+    }
+    .mockup-phone-screen iframe {
+      width: 390px; height: 732px;
+      border: none; display: block;
+      transform: scale(0.349);
+      transform-origin: top left;
+      pointer-events: none;
     }
     .btn-primary {
       background: var(--accent); color: #fff;
@@ -667,7 +749,9 @@
       nav { padding: 0 20px; }
       .nav-links { display: none; }
       .nav-login { display: none; }
-      .hero { padding: 90px 20px 48px; }
+      .hero { grid-template-columns: 1fr; padding: 90px 24px 48px; gap: 0; }
+      .hero-text { align-items: center; text-align: center; }
+      .hero-mockups { display: none; }
       .features { padding: 0 20px; }
       .feature-row { grid-template-columns: 1fr; gap: 32px; }
       .feature-row.flip { direction: ltr; }
@@ -701,22 +785,46 @@
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-label">mood-based notepad · rebuilt 2025</div>
-    <h1>Beautifully simple<br><span>day planner</span>.</h1>
-    <p>A beautifully designed notepad that adapts to how you feel. Plan your week, capture ideas, and stay focused — without the noise.<br><br><strong style="color:var(--text);font-weight:600;">Community driven development — your feedback guides our features.</strong></p>
-    <div class="hero-btns">
-      <a href="https://workspace.cloudpadapp.com" class="btn-primary">
-        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 3h6v6M10 14L21 3M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/></svg>
-        Open cloudpad
-      </a>
-      <a href="#demo" class="btn-secondary">
-        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-        Live demo
-      </a>
-      <a href="https://discord.com/channels/1479707810504638588/1479707810504638591" class="btn-discord" target="_blank" rel="noopener">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057c.003.025.015.048.03.063a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
-        Discord
-      </a>
+    <!-- Left: text -->
+    <div class="hero-text">
+      <div class="hero-label">mood-based notepad · rebuilt 2025</div>
+      <h1>Beautifully simple<br><span>day <span class="rotating-word">planner</span></span>.</h1>
+      <p>A beautifully designed notepad that adapts to how you feel. Plan your week, capture ideas, and stay focused — without the noise.<br><br><strong style="color:var(--text);font-weight:600;">Community driven development — your feedback guides our features.</strong></p>
+      <div class="hero-btns">
+        <a href="https://workspace.cloudpadapp.com" class="btn-primary">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 3h6v6M10 14L21 3M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/></svg>
+          Open cloudpad
+        </a>
+        <a href="#demo" class="btn-secondary">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          Live demo
+        </a>
+        <a href="https://discord.com/channels/1479707810504638588/1479707810504638591" class="btn-discord" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057c.003.025.015.048.03.063a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
+          Discord
+        </a>
+      </div>
+    </div>
+
+    <!-- Right: desktop + phone mockups -->
+    <div class="hero-mockups">
+      <div class="mockup-desktop">
+        <div class="mockup-desktop-bar">
+          <div class="demo-dot red"></div>
+          <div class="demo-dot yellow"></div>
+          <div class="demo-dot green"></div>
+          <div class="demo-url">🔒 cloudpad demo</div>
+        </div>
+        <div class="mockup-iframe-outer">
+          <iframe src="demo.html" title="cloudpad app preview" tabindex="-1" loading="lazy"></iframe>
+        </div>
+      </div>
+      <div class="mockup-phone">
+        <div class="mockup-phone-notch"></div>
+        <div class="mockup-phone-screen">
+          <iframe src="demo.html" title="cloudpad mobile preview" tabindex="-1" loading="lazy"></iframe>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -741,22 +849,6 @@
       ></iframe>
     </div>
   </div>
-
-  <!-- MOBILE DEMO -->
-  <section class="mobile-demo-section">
-    <h2>Beautiful on mobile too.</h2>
-    <p>cloudpad is fully responsive — your pads, your tasks, your mood, wherever you are.</p>
-    <div class="phone-outer">
-      <div class="phone-notch"></div>
-      <div class="phone-screen">
-        <iframe
-          class="phone-iframe"
-          src="demo.html"
-          title="cloudpad mobile demo"
-        ></iframe>
-      </div>
-    </div>
-  </section>
 
   <hr class="divider">
 
@@ -1234,5 +1326,46 @@
     <span class="footer-copy">built with ☁️ · 2025</span>
   </footer>
 
+
+  <script>
+    /* ── Rotating word in hero h1 ── */
+    (function () {
+      var words = ['planner', 'to-do list', 'calendar', 'shopping list', 'mood board', 'project', 'workspace'];
+      var idx = 0;
+      var el = document.querySelector('.rotating-word');
+      if (!el) return;
+      setInterval(function () {
+        el.classList.add('rw-exit');
+        setTimeout(function () {
+          idx = (idx + 1) % words.length;
+          el.textContent = words[idx];
+          el.classList.remove('rw-exit');
+          el.classList.add('rw-enter');
+          requestAnimationFrame(function () {
+            requestAnimationFrame(function () {
+              el.classList.remove('rw-enter');
+            });
+          });
+        }, 230);
+      }, 2800);
+    })();
+
+    /* ── Scale desktop mockup iframe to fill its container ── */
+    (function () {
+      var outer = document.querySelector('.mockup-iframe-outer');
+      if (!outer) return;
+      var iframe = outer.querySelector('iframe');
+
+      function scaleMockup() {
+        var w = outer.offsetWidth;
+        var scale = w / 1280;
+        iframe.style.transform = 'scale(' + scale + ')';
+        outer.style.height = Math.round(900 * scale) + 'px';
+      }
+
+      scaleMockup();
+      window.addEventListener('resize', scaleMockup);
+    })();
+  </script>
 </body>
 </html>
