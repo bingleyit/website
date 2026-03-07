@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>cloudpad — a mood-based notepad</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <meta name="theme-color" content="#006cd1">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Inter:wght@300;400;500;600;700;800&display=swap">
@@ -1094,6 +1096,10 @@
 
 
   <script>
+    /* ── Force scroll to top on load (prevent browser scroll restoration to #demo) ── */
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    window.addEventListener('load', function () { window.scrollTo(0, 0); });
+
     /* ── Typewriter hero headline ── */
     (function () {
       var words = ['to-do list', 'calendar', 'shopping list', 'mood board', 'project', 'workspace', 'day planner'];
