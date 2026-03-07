@@ -119,17 +119,18 @@
       flex-wrap: wrap;
     }
 
-    /* ── ROTATING WORD ────────────────────── */
-    .rotating-word {
+    /* ── TYPEWRITER ───────────────────────── */
+    .hero-type-line { color: var(--accent); white-space: nowrap; }
+    .typed-cursor {
       display: inline-block;
-      transition: opacity 0.22s ease, transform 0.22s ease;
+      width: 3px; height: 0.82em;
+      background: var(--accent);
+      margin-left: 2px;
+      vertical-align: middle;
+      border-radius: 1px;
+      animation: blink-cur 0.9s step-end infinite;
     }
-    .rotating-word.rw-exit {
-      opacity: 0; transform: translateY(-7px);
-    }
-    .rotating-word.rw-enter {
-      opacity: 0; transform: translateY(7px);
-    }
+    @keyframes blink-cur { 0%,100%{opacity:1} 50%{opacity:0} }
 
     /* ── HERO MOCKUPS ─────────────────────── */
     .hero-mockups {
@@ -151,50 +152,105 @@
       display: flex; align-items: center;
       padding: 0 14px; gap: 7px;
     }
+    /* Desktop static mockup content */
     .mockup-iframe-outer {
+      height: 374px;
+      display: flex;
       overflow: hidden;
-      position: relative;
       background: var(--bg);
     }
-    .mockup-iframe-outer iframe {
-      width: 1280px;
-      height: 900px;
-      border: none;
-      display: block;
-      transform-origin: top left;
-      pointer-events: none;
+    .mcs-sidebar {
+      width: 142px; min-width: 142px;
+      background: var(--surface);
+      border-right: 1px solid var(--border-light);
+      padding: 12px 10px;
+      display: flex; flex-direction: column; gap: 2px;
     }
+    .mcs-logo {
+      font-family: var(--font-logo); font-size: 1rem;
+      color: var(--accent); font-weight: 700;
+      margin-bottom: 8px; padding-left: 4px;
+    }
+    .mcs-mood-row {
+      display: flex; align-items: center; gap: 5px;
+      font-size: 0.6rem; color: #92700a;
+      margin-bottom: 10px; padding: 4px 6px;
+      background: #fff8ee; border-radius: 5px;
+      border: 1px solid #fde8a0;
+    }
+    .mcs-mood-dot { width: 6px; height: 6px; border-radius: 50%; background: #f59e0b; flex-shrink: 0; }
+    .mcs-nav-item {
+      font-size: 0.64rem; padding: 5px 7px;
+      border-radius: 5px; color: var(--text-dim);
+      display: flex; align-items: center; gap: 5px;
+      white-space: nowrap;
+    }
+    .mcs-nav-item.active { background: var(--accent-light); color: var(--accent); font-weight: 500; }
+    .mcs-main { flex: 1; padding: 10px 8px; overflow: hidden; }
+    .mcs-week {
+      display: grid; grid-template-columns: repeat(7,1fr);
+      gap: 3px; height: 100%;
+    }
+    .mcs-day { display: flex; flex-direction: column; gap: 3px; }
+    .mcs-day-hd {
+      font-size: 0.52rem; font-weight: 600; color: var(--text-dim);
+      text-transform: uppercase; letter-spacing: 0.04em;
+      text-align: center; padding: 3px 2px 5px;
+    }
+    .mcs-day.today .mcs-day-hd { color: var(--accent); }
+    .mcs-day.weekend .mcs-day-hd { color: var(--text-light); }
+    .mcs-task {
+      font-size: 0.54rem; padding: 3px 4px;
+      border-radius: 3px; line-height: 1.3;
+      background: var(--surface); border: 1px solid var(--border-light);
+      color: var(--text); word-break: break-word;
+    }
+    .mcs-task.done { text-decoration: line-through; color: var(--text-light); background: none; border-color: transparent; }
+    .mcs-task.accent { background: var(--accent-light); border-color: #c2d6f0; color: var(--accent); font-weight: 500; }
+    .mcs-task.faint { color: var(--text-light); background: none; border-color: transparent; font-style: italic; }
+
+    /* Phone static mockup */
     .mockup-phone {
-      position: absolute;
-      right: 0;
-      bottom: -28px;
-      background: #1a1714;
-      border-radius: 34px;
-      padding: 11px;
+      position: absolute; right: 0; bottom: -28px;
+      background: #1a1714; border-radius: 34px; padding: 11px;
       box-shadow: 0 24px 56px rgba(0,0,0,0.36), 0 0 0 1px rgba(255,255,255,0.07) inset;
       z-index: 2;
     }
     .mockup-phone-notch {
-      width: 54px; height: 14px;
-      background: #1a1714;
+      width: 54px; height: 14px; background: #1a1714;
       border-radius: 0 0 10px 10px;
-      position: absolute; top: 11px; left: 50%; transform: translateX(-50%);
-      z-index: 3;
+      position: absolute; top: 11px; left: 50%; transform: translateX(-50%); z-index: 3;
     }
     .mockup-phone-screen {
-      width: 136px; height: 256px;
-      border-radius: 24px;
-      overflow: hidden;
-      position: relative;
-      background: #fff;
+      width: 136px; height: 256px; border-radius: 24px;
+      overflow: hidden; position: relative; background: #fff;
     }
-    .mockup-phone-screen iframe {
-      width: 390px; height: 732px;
-      border: none; display: block;
-      transform: scale(0.349);
-      transform-origin: top left;
-      pointer-events: none;
+    .mcs-phone {
+      width: 100%; height: 100%;
+      display: flex; flex-direction: column;
+      background: var(--bg); font-family: var(--font-ui);
     }
+    .mcs-ph-header {
+      padding: 18px 10px 6px;
+      display: flex; align-items: baseline; justify-content: space-between;
+    }
+    .mcs-ph-logo { font-family: var(--font-logo); font-size: 0.9rem; color: var(--accent); font-weight: 700; }
+    .mcs-ph-date { font-size: 0.52rem; color: var(--text-dim); }
+    .mcs-ph-tasks { flex: 1; padding: 2px 8px; display: flex; flex-direction: column; gap: 4px; overflow: hidden; }
+    .mcs-ph-task {
+      font-size: 0.56rem; padding: 4px 6px;
+      border-radius: 5px; background: var(--surface);
+      border: 1px solid var(--border-light); color: var(--text);
+    }
+    .mcs-ph-task.done { text-decoration: line-through; color: var(--text-light); background: none; border-color: transparent; }
+    .mcs-ph-task.accent { background: var(--accent-light); border-color: #c2d6f0; color: var(--accent); font-weight: 500; }
+    .mcs-ph-add { font-size: 0.54rem; color: var(--text-light); padding: 2px 6px; }
+    .mcs-ph-mood {
+      padding: 7px 10px; border-top: 1px solid var(--border-light);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .mcs-ph-mood-label { font-size: 0.52rem; color: var(--text-dim); font-weight: 500; }
+    .mcs-ph-moods { display: flex; gap: 5px; font-size: 0.72rem; }
     .btn-primary {
       background: var(--accent); color: #fff;
       font-size: 0.92rem; font-weight: 500;
@@ -788,7 +844,7 @@
     <!-- Left: text -->
     <div class="hero-text">
       <div class="hero-label">mood-based notepad · rebuilt 2025</div>
-      <h1>Beautifully simple<br><span>day <span class="rotating-word">planner</span></span>.</h1>
+      <h1>Beautifully simple<br><span class="hero-type-line"><span class="typed-word"></span><span class="typed-cursor"></span></span>.</h1>
       <p>A beautifully designed notepad that adapts to how you feel. Plan your week, capture ideas, and stay focused — without the noise.<br><br><strong style="color:var(--text);font-weight:600;">Community driven development — your feedback guides our features.</strong></p>
       <div class="hero-btns">
         <a href="https://workspace.cloudpadapp.com" class="btn-primary">
@@ -816,13 +872,76 @@
           <div class="demo-url">🔒 cloudpad demo</div>
         </div>
         <div class="mockup-iframe-outer">
-          <iframe src="demo.html" title="cloudpad app preview" tabindex="-1" loading="lazy"></iframe>
+          <!-- Sidebar -->
+          <div class="mcs-sidebar">
+            <div class="mcs-logo">cloudpad</div>
+            <div class="mcs-mood-row"><span class="mcs-mood-dot"></span> Focused mode</div>
+            <div class="mcs-nav-item active">📅 Weekly pad</div>
+            <div class="mcs-nav-item">📥 Inbox</div>
+            <div class="mcs-nav-item">🌤 Someday</div>
+            <div class="mcs-nav-item">🗂 Projects</div>
+            <div class="mcs-nav-item">🍳 Recipes</div>
+            <div class="mcs-nav-item">📖 Life pad</div>
+          </div>
+          <!-- Week grid -->
+          <div class="mcs-main">
+            <div class="mcs-week">
+              <div class="mcs-day">
+                <div class="mcs-day-hd">Mon</div>
+                <div class="mcs-task done">Design review</div>
+                <div class="mcs-task done">Standup</div>
+              </div>
+              <div class="mcs-day today">
+                <div class="mcs-day-hd">Tue</div>
+                <div class="mcs-task accent">Landing page</div>
+                <div class="mcs-task">Review PR #42</div>
+                <div class="mcs-task faint">+ add task</div>
+              </div>
+              <div class="mcs-day">
+                <div class="mcs-day-hd">Wed</div>
+                <div class="mcs-task">Client call</div>
+                <div class="mcs-task">Write docs</div>
+              </div>
+              <div class="mcs-day">
+                <div class="mcs-day-hd">Thu</div>
+                <div class="mcs-task">Deploy v2</div>
+              </div>
+              <div class="mcs-day">
+                <div class="mcs-day-hd">Fri</div>
+                <div class="mcs-task">Sprint retro</div>
+                <div class="mcs-task">Team lunch</div>
+              </div>
+              <div class="mcs-day weekend">
+                <div class="mcs-day-hd">Sat</div>
+                <div class="mcs-task faint">Grocery run</div>
+              </div>
+              <div class="mcs-day weekend">
+                <div class="mcs-day-hd">Sun</div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="mockup-phone">
         <div class="mockup-phone-notch"></div>
         <div class="mockup-phone-screen">
-          <iframe src="demo.html" title="cloudpad mobile preview" tabindex="-1" loading="lazy"></iframe>
+          <div class="mcs-phone">
+            <div class="mcs-ph-header">
+              <span class="mcs-ph-logo">cloudpad</span>
+              <span class="mcs-ph-date">Tuesday</span>
+            </div>
+            <div class="mcs-ph-tasks">
+              <div class="mcs-ph-task done">Design review</div>
+              <div class="mcs-ph-task accent">Landing page</div>
+              <div class="mcs-ph-task">Review PR #42</div>
+              <div class="mcs-ph-task">Client call prep</div>
+              <div class="mcs-ph-add">+ add task</div>
+            </div>
+            <div class="mcs-ph-mood">
+              <span class="mcs-ph-mood-label">Mood</span>
+              <div class="mcs-ph-moods">😴 🌤 🔥 ✨</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -1328,43 +1447,38 @@
 
 
   <script>
-    /* ── Rotating word in hero h1 ── */
+    /* ── Typewriter hero headline ── */
     (function () {
-      var words = ['planner', 'to-do list', 'calendar', 'shopping list', 'mood board', 'project', 'workspace'];
-      var idx = 0;
-      var el = document.querySelector('.rotating-word');
+      var words = ['to-do list', 'calendar', 'shopping list', 'mood board', 'project', 'workspace', 'day planner'];
+      var wordIdx = 0, charIdx = 0, deleting = false;
+      var el = document.querySelector('.typed-word');
       if (!el) return;
-      setInterval(function () {
-        el.classList.add('rw-exit');
-        setTimeout(function () {
-          idx = (idx + 1) % words.length;
-          el.textContent = words[idx];
-          el.classList.remove('rw-exit');
-          el.classList.add('rw-enter');
-          requestAnimationFrame(function () {
-            requestAnimationFrame(function () {
-              el.classList.remove('rw-enter');
-            });
-          });
-        }, 230);
-      }, 2800);
-    })();
 
-    /* ── Scale desktop mockup iframe to fill its container ── */
-    (function () {
-      var outer = document.querySelector('.mockup-iframe-outer');
-      if (!outer) return;
-      var iframe = outer.querySelector('iframe');
-
-      function scaleMockup() {
-        var w = outer.offsetWidth;
-        var scale = w / 1280;
-        iframe.style.transform = 'scale(' + scale + ')';
-        outer.style.height = Math.round(900 * scale) + 'px';
+      function tick() {
+        var word = words[wordIdx];
+        if (!deleting) {
+          charIdx++;
+          el.textContent = word.slice(0, charIdx);
+          if (charIdx === word.length) {
+            deleting = true;
+            setTimeout(tick, 1800);
+          } else {
+            setTimeout(tick, 95);
+          }
+        } else {
+          charIdx--;
+          el.textContent = word.slice(0, charIdx);
+          if (charIdx === 0) {
+            deleting = false;
+            wordIdx = (wordIdx + 1) % words.length;
+            setTimeout(tick, 320);
+          } else {
+            setTimeout(tick, 48);
+          }
+        }
       }
 
-      scaleMockup();
-      window.addEventListener('resize', scaleMockup);
+      setTimeout(tick, 600);
     })();
   </script>
 </body>
