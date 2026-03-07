@@ -6,7 +6,7 @@
   <title>cloudpad — a mood-based notepad</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Inter:wght@300;400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pacifico&family=Inter:wght@300;400;500;600;700;800&display=swap">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -21,7 +21,7 @@
       --text-dim: #9a9490;
       --text-light: #c4bfb8;
       --font-ui: 'Inter', sans-serif;
-      --font-logo: 'Caveat', cursive;
+      --font-logo: 'Pacifico', cursive;
       --font-mono: 'Inter', sans-serif;
     }
 
@@ -45,9 +45,8 @@
     }
     .nav-logo {
       font-family: var(--font-logo);
-      font-size: 1.6rem; font-weight: 700;
+      font-size: 1.4rem; font-weight: 400;
       color: var(--accent); text-decoration: none;
-      letter-spacing: 0;
     }
     .nav-links {
       position: absolute; left: 50%; transform: translateX(-50%);
@@ -152,26 +151,14 @@
       display: flex; align-items: center;
       padding: 0 14px; gap: 7px;
     }
-    /* Live iframe mockups */
+    /* Screenshot mockup images */
     .mockup-iframe-outer {
       height: 380px;
       overflow: hidden;
       line-height: 0;
       background: var(--bg);
-      position: relative;
     }
-    .mockup-screen-iframe {
-      width: 1300px; height: 760px;
-      border: none; display: block;
-      transform: scale(0.5); transform-origin: top left;
-      pointer-events: none;
-    }
-    .mockup-phone-screen-iframe {
-      width: 375px; height: 812px;
-      border: none; display: block;
-      transform: scale(0.475); transform-origin: top left;
-      pointer-events: none;
-    }
+    .mockup-iframe-outer img { width: 100%; display: block; }
     .mockup-phone {
       position: absolute; right: -10px; bottom: -32px;
       background: #1a1714; border-radius: 44px; padding: 13px;
@@ -435,7 +422,7 @@
     }
     .footer-logo {
       font-family: var(--font-logo);
-      font-size: 1.4rem; font-weight: 700;
+      font-size: 1.2rem; font-weight: 400;
       color: var(--accent); text-decoration: none;
     }
     .footer-links {
@@ -524,16 +511,18 @@
       table-layout: fixed;
     }
     .pricing-table thead th {
-      padding: 0 16px 28px; text-align: center;
-      vertical-align: top;
+      padding: 0 8px 28px; text-align: center;
+      vertical-align: bottom;
     }
-    .pricing-table thead th:first-child { width: 38%; text-align: left; }
+    .pricing-table thead th:first-child { width: 38%; text-align: left; padding-bottom: 28px; }
     .pricing-table thead th:not(:first-child) { width: 20.7%; }
+    /* Extra top room on featured col so the badge doesn't clip */
+    .pricing-table thead th:has(.pt-tier-wrap.featured) { padding-top: 18px; }
     .pt-tier-wrap {
       border: 1px solid var(--border); border-radius: 14px;
-      padding: 22px 16px 18px; background: var(--bg);
+      padding: 22px 12px 18px; background: var(--bg);
       display: flex; flex-direction: column; align-items: center; gap: 8px;
-      position: relative;
+      position: relative; width: 100%;
     }
     .pt-tier-wrap.featured {
       background: var(--accent); border-color: var(--accent);
@@ -629,7 +618,8 @@
     <div class="hero-text">
       <div class="hero-label">mood-based notepad · rebuilt 2025</div>
       <h1>Beautifully simple<br><span class="hero-type-line"><span class="typed-word"></span><span class="typed-cursor"></span></span></h1>
-      <p><strong style="color:var(--text);font-weight:600;">Community driven development — your feedback guides our features.</strong></p>
+      <p>A beautifully designed notepad that adapts to how you feel. Plan your week, capture ideas, and stay focused — without the noise.</p>
+      <p style="margin-top:16px;"><strong style="color:var(--text);font-weight:600;">Community driven development — your feedback guides our features.</strong></p>
       <div class="hero-btns">
         <a href="https://workspace.cloudpadapp.com" class="btn-primary">
           <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
@@ -652,13 +642,13 @@
           <div class="demo-url">🔒 cloudpad demo</div>
         </div>
         <div class="mockup-iframe-outer">
-          <iframe class="mockup-screen-iframe" src="demo.html" title="cloudpad preview" tabindex="-1"></iframe>
+          <img src="screenshot-desktop.png" alt="cloudpad app — weekly task view">
         </div>
       </div>
       <div class="mockup-phone">
         <div class="mockup-phone-notch"></div>
         <div class="mockup-phone-screen">
-          <iframe class="mockup-phone-screen-iframe" src="demo.html" title="cloudpad mobile preview" tabindex="-1"></iframe>
+          <img src="screenshot-mobile.png" alt="cloudpad mobile app">
         </div>
       </div>
     </div>
