@@ -6,7 +6,7 @@
   <title>cloudpad — a mood-based notepad</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Inter:wght@300;400;500;600;700;800&display=swap">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -21,7 +21,7 @@
       --text-dim: #9a9490;
       --text-light: #c4bfb8;
       --font-ui: 'Inter', sans-serif;
-      --font-logo: 'Inter', sans-serif;
+      --font-logo: 'Caveat', cursive;
       --font-mono: 'Inter', sans-serif;
     }
 
@@ -45,9 +45,9 @@
     }
     .nav-logo {
       font-family: var(--font-logo);
-      font-size: 1.4rem; font-weight: 800;
+      font-size: 1.6rem; font-weight: 700;
       color: var(--accent); text-decoration: none;
-      letter-spacing: -0.04em;
+      letter-spacing: 0;
     }
     .nav-links {
       position: absolute; left: 50%; transform: translateX(-50%);
@@ -82,12 +82,12 @@
 
     /* ── HERO ─────────────────────────────── */
     .hero {
-      padding: 120px 60px 80px;
+      padding: 120px 5vw 80px;
       display: grid;
-      grid-template-columns: 1fr 1.8fr;
-      gap: 48px;
+      grid-template-columns: 1fr 2fr;
+      gap: 72px;
       align-items: center;
-      max-width: 1320px;
+      max-width: 1600px;
       margin: 0 auto;
     }
     .hero-text { display: flex; flex-direction: column; align-items: flex-start; }
@@ -424,9 +424,8 @@
     }
     .footer-logo {
       font-family: var(--font-logo);
-      font-size: 1.1rem; font-weight: 800;
+      font-size: 1.4rem; font-weight: 700;
       color: var(--accent); text-decoration: none;
-      letter-spacing: -0.03em;
     }
     .footer-links {
       display: flex; gap: 24px; list-style: none;
@@ -504,96 +503,76 @@
       max-width: 480px; margin: 0 auto 60px;
       text-align: center;
     }
-    .pricing-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 24px; max-width: 1000px; margin: 0 auto;
+    /* Comparison table */
+    .pricing-table-wrap {
+      max-width: 860px; margin: 0 auto;
+      overflow-x: auto;
     }
-    .pricing-card {
-      border: 1px solid var(--border); border-radius: 16px;
-      padding: 32px; background: var(--bg);
+    .pricing-table {
+      width: 100%; border-collapse: collapse;
+      table-layout: fixed;
+    }
+    .pricing-table thead th {
+      padding: 0 16px 28px; text-align: center;
+      vertical-align: top;
+    }
+    .pricing-table thead th:first-child { width: 38%; text-align: left; }
+    .pricing-table thead th:not(:first-child) { width: 20.7%; }
+    .pt-tier-wrap {
+      border: 1px solid var(--border); border-radius: 14px;
+      padding: 22px 16px 18px; background: var(--bg);
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
       position: relative;
-      transition: box-shadow 0.2s, border-color 0.2s;
-      display: flex; flex-direction: column;
     }
-    .pricing-card:hover {
-      box-shadow: 0 8px 40px rgba(0,108,209,0.09);
-      border-color: rgba(0,108,209,0.25);
+    .pt-tier-wrap.featured {
+      background: var(--accent); border-color: var(--accent);
     }
-    .pricing-card.featured {
-      border-color: var(--accent);
-      background: var(--accent); color: #fff;
-    }
-    .pricing-badge {
-      position: absolute; top: -13px; left: 50%;
+    .pt-badge {
+      position: absolute; top: -12px; left: 50%;
       transform: translateX(-50%);
       background: #ffb800; color: #000;
-      font-size: 0.63rem; font-weight: 700;
+      font-size: 0.6rem; font-weight: 700;
       letter-spacing: 0.1em; text-transform: uppercase;
-      padding: 4px 14px; border-radius: 20px;
+      padding: 3px 12px; border-radius: 20px;
       white-space: nowrap;
     }
-    .pricing-name {
-      font-size: 0.72rem; font-weight: 600;
+    .pt-tier-name {
+      font-size: 0.68rem; font-weight: 600;
       letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--text-dim); margin-bottom: 14px;
-      font-family: var(--font-mono);
+      color: var(--text-dim);
     }
-    .pricing-card.featured .pricing-name { color: rgba(255,255,255,0.7); }
-    .pricing-price {
-      font-size: 3rem; font-weight: 700;
-      letter-spacing: -0.04em; color: var(--text);
-      line-height: 1; margin-bottom: 6px;
+    .pt-tier-wrap.featured .pt-tier-name { color: rgba(255,255,255,0.7); }
+    .pt-tier-price {
+      font-size: 2.4rem; font-weight: 700;
+      letter-spacing: -0.04em; color: var(--text); line-height: 1;
     }
-    .pricing-card.featured .pricing-price { color: #fff; }
-    .pricing-price sup {
-      font-size: 1.2rem; font-weight: 500;
-      vertical-align: super; letter-spacing: 0;
-    }
-    .pricing-price .period {
-      font-size: 0.9rem; font-weight: 400;
-      letter-spacing: 0; opacity: 0.6;
-    }
-    .pricing-desc {
-      font-size: 0.82rem; color: var(--text-dim);
-      font-weight: 300; line-height: 1.5;
-      margin-bottom: 20px;
-    }
-    .pricing-card.featured .pricing-desc { color: rgba(255,255,255,0.75); }
-    .pricing-divider {
-      border: none; border-top: 1px solid var(--border);
-      margin: 18px 0;
-    }
-    .pricing-card.featured .pricing-divider { border-color: rgba(255,255,255,0.2); }
-    .pricing-features {
-      list-style: none; display: flex;
-      flex-direction: column; gap: 10px;
-      margin-bottom: 28px; flex: 1;
-    }
-    .pricing-feature {
-      font-size: 0.82rem; color: var(--text-dim);
-      display: flex; align-items: flex-start;
-      gap: 9px; line-height: 1.4;
-    }
-    .pricing-feature::before {
-      content: '✓'; color: var(--accent);
-      font-weight: 700; flex-shrink: 0; margin-top: 1px;
-    }
-    .pricing-card.featured .pricing-feature { color: rgba(255,255,255,0.85); }
-    .pricing-card.featured .pricing-feature::before { color: rgba(255,255,255,0.9); }
-    .pricing-cta {
-      display: block; text-align: center;
-      padding: 12px 20px; border-radius: 10px;
-      font-size: 0.88rem; font-weight: 500;
+    .pt-tier-wrap.featured .pt-tier-price { color: #fff; }
+    .pt-tier-price sup { font-size: 1rem; font-weight: 500; vertical-align: super; }
+    .pt-tier-price .period { font-size: 0.8rem; font-weight: 400; opacity: 0.6; }
+    .pt-cta {
+      display: block; text-align: center; width: 100%;
+      padding: 9px 12px; border-radius: 8px; margin-top: 4px;
+      font-size: 0.78rem; font-weight: 500;
       text-decoration: none;
       transition: filter 0.15s, transform 0.15s;
       border: 1.5px solid var(--border); color: var(--text);
-      margin-top: auto;
     }
-    .pricing-cta:hover { transform: translateY(-1px); border-color: var(--accent); color: var(--accent); }
-    .pricing-card.featured .pricing-cta {
-      background: #fff; color: var(--accent); border-color: #fff;
+    .pt-cta:hover { transform: translateY(-1px); border-color: var(--accent); color: var(--accent); }
+    .pt-cta.featured { background: #fff; color: var(--accent); border-color: #fff; }
+    .pt-cta.featured:hover { filter: brightness(0.96); }
+    /* Table body rows */
+    .pricing-table tbody tr {
+      border-top: 1px solid var(--border-light);
     }
-    .pricing-card.featured .pricing-cta:hover { filter: brightness(0.96); }
+    .pricing-table tbody tr:hover { background: rgba(0,108,209,0.03); }
+    .pricing-table tbody td {
+      padding: 11px 16px; font-size: 0.83rem;
+      color: var(--text-dim); text-align: center; vertical-align: middle;
+    }
+    .pricing-table tbody td:first-child { text-align: left; color: var(--text); font-weight: 400; }
+    .pt-yes { color: var(--accent) !important; font-weight: 700; font-size: 1rem !important; }
+    .pt-no { color: var(--text-light) !important; font-size: 1rem !important; }
+    .pt-pro-col { background: rgba(0,108,209,0.05); }
 
     /* ── RESPONSIVE ───────────────────────── */
     @media (max-width: 768px) {
@@ -610,7 +589,7 @@
       .phone-outer { transform: scale(0.85); transform-origin: center top; }
       .pad-types-inner { padding: 0 20px; }
       .pad-grid { grid-template-columns: 1fr; }
-      .pricing-grid { grid-template-columns: 1fr; }
+      .pricing-table-wrap { overflow-x: auto; }
       .pricing-section { padding: 60px 20px; }
       footer { flex-direction: column; gap: 20px; text-align: center; }
     }
@@ -965,65 +944,129 @@
   <section class="pricing-section" id="pricing">
     <h2>Simple, honest pricing.</h2>
     <p class="pricing-sub">Start free, upgrade when you're ready — or grab a lifetime deal and never think about it again.</p>
-    <div class="pricing-grid">
 
-      <!-- Free -->
-      <div class="pricing-card">
-        <div class="pricing-name">Free</div>
-        <div class="pricing-price"><sup>$</sup>0</div>
-        <div class="pricing-desc">Everything you need to get started, no card required.</div>
-        <hr class="pricing-divider">
-        <ul class="pricing-features">
-          <li class="pricing-feature">Weekly Pad &amp; Inbox</li>
-          <li class="pricing-feature">Someday &amp; Life lists</li>
-          <li class="pricing-feature">Shopping &amp; Grocery pad</li>
-          <li class="pricing-feature">Notes pad</li>
-          <li class="pricing-feature">5 colour themes</li>
-          <li class="pricing-feature">Built-in Pomodoro timer</li>
-          <li class="pricing-feature">Sync across devices</li>
-        </ul>
-        <a href="https://workspace.cloudpadapp.com" class="pricing-cta">Get started free</a>
-      </div>
-
-      <!-- Pro -->
-      <div class="pricing-card featured">
-        <div class="pricing-badge">Most popular</div>
-        <div class="pricing-name">Pro</div>
-        <div class="pricing-price"><sup>$</sup>2<span class="period">/mo</span></div>
-        <div class="pricing-desc">All pads, all features, no limits.</div>
-        <hr class="pricing-divider">
-        <ul class="pricing-features">
-          <li class="pricing-feature">Everything in Free</li>
-          <li class="pricing-feature">All 15+ pad types</li>
-          <li class="pricing-feature">10+ mood &amp; colour themes</li>
-          <li class="pricing-feature">Projects (Kanban boards)</li>
-          <li class="pricing-feature">Finance &amp; stock tracker</li>
-          <li class="pricing-feature">Travel &amp; Recipe pads</li>
-          <li class="pricing-feature">Share links (public pads)</li>
-          <li class="pricing-feature">News &amp; RSS feeds</li>
-          <li class="pricing-feature">Code snippets pad</li>
-          <li class="pricing-feature">Priority support</li>
-        </ul>
-        <a href="https://workspace.cloudpadapp.com" class="pricing-cta">Start Pro</a>
-      </div>
-
-      <!-- Lifetime -->
-      <div class="pricing-card">
-        <div class="pricing-name">Lifetime</div>
-        <div class="pricing-price"><sup>$</sup>99</div>
-        <div class="pricing-desc">One payment. Every Pro feature, now and forever.</div>
-        <hr class="pricing-divider">
-        <ul class="pricing-features">
-          <li class="pricing-feature">Everything in Pro</li>
-          <li class="pricing-feature">All future features included</li>
-          <li class="pricing-feature">Never pay again</li>
-          <li class="pricing-feature">Early access to new pads</li>
-          <li class="pricing-feature">Founder-level support</li>
-          <li class="pricing-feature">Your feedback shapes the roadmap</li>
-        </ul>
-        <a href="https://workspace.cloudpadapp.com" class="pricing-cta">Get lifetime access</a>
-      </div>
-
+    <div class="pricing-table-wrap">
+      <table class="pricing-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>
+              <div class="pt-tier-wrap">
+                <div class="pt-tier-name">Free</div>
+                <div class="pt-tier-price"><sup>$</sup>0</div>
+                <a href="https://workspace.cloudpadapp.com" class="pt-cta">Get started free</a>
+              </div>
+            </th>
+            <th>
+              <div class="pt-tier-wrap featured">
+                <div class="pt-badge">Most popular</div>
+                <div class="pt-tier-name">Pro</div>
+                <div class="pt-tier-price"><sup>$</sup>2<span class="period">/mo</span></div>
+                <a href="https://workspace.cloudpadapp.com" class="pt-cta featured">Start Pro</a>
+              </div>
+            </th>
+            <th>
+              <div class="pt-tier-wrap">
+                <div class="pt-tier-name">Lifetime</div>
+                <div class="pt-tier-price"><sup>$</sup>99</div>
+                <a href="https://workspace.cloudpadapp.com" class="pt-cta">Get lifetime access</a>
+              </div>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Weekly planner</td>
+            <td class="pt-yes">✓</td>
+            <td class="pt-yes pt-pro-col">✓</td>
+            <td class="pt-yes">✓</td>
+          </tr>
+          <tr>
+            <td>Calendar</td>
+            <td class="pt-yes">✓</td>
+            <td class="pt-yes pt-pro-col">✓</td>
+            <td class="pt-yes">✓</td>
+          </tr>
+          <tr>
+            <td>Notes</td>
+            <td class="pt-yes">✓</td>
+            <td class="pt-yes pt-pro-col">✓</td>
+            <td class="pt-yes">✓</td>
+          </tr>
+          <tr>
+            <td>Custom Lists</td>
+            <td class="pt-no">—</td>
+            <td class="pt-yes pt-pro-col">✓</td>
+            <td class="pt-yes">✓</td>
+          </tr>
+          <tr>
+            <td>Custom Themes</td>
+            <td class="pt-no">—</td>
+            <td class="pt-yes pt-pro-col">✓</td>
+            <td class="pt-yes">✓</td>
+          </tr>
+          <tr>
+            <td>Pomodoro</td>
+            <td class="pt-yes">✓</td>
+            <td class="pt-yes pt-pro-col">✓</td>
+            <td class="pt-yes">✓</td>
+          </tr>
+          <tr>
+            <td>Mood Streaming Sounds</td>
+            <td class="pt-yes">✓</td>
+            <td class="pt-yes pt-pro-col">✓</td>
+            <td class="pt-yes">✓</td>
+          </tr>
+          <tr>
+            <td>Shopping lists</td>
+            <td class="pt-yes">✓</td>
+            <td class="pt-yes pt-pro-col">✓</td>
+            <td class="pt-yes">✓</td>
+          </tr>
+          <tr>
+            <td>Share Lists</td>
+            <td class="pt-yes">✓</td>
+            <td class="pt-yes pt-pro-col">✓</td>
+            <td class="pt-yes">✓</td>
+          </tr>
+          <tr>
+            <td>Projects &amp; Kanban</td>
+            <td class="pt-no">—</td>
+            <td class="pt-yes pt-pro-col">✓</td>
+            <td class="pt-yes">✓</td>
+          </tr>
+          <tr>
+            <td>Recipe pad</td>
+            <td class="pt-yes">✓</td>
+            <td class="pt-yes pt-pro-col">✓</td>
+            <td class="pt-yes">✓</td>
+          </tr>
+          <tr>
+            <td>Personal Finance Tracking</td>
+            <td class="pt-no">—</td>
+            <td class="pt-yes pt-pro-col">✓</td>
+            <td class="pt-yes">✓</td>
+          </tr>
+          <tr>
+            <td>News Feed</td>
+            <td class="pt-no">—</td>
+            <td class="pt-yes pt-pro-col">✓</td>
+            <td class="pt-yes">✓</td>
+          </tr>
+          <tr>
+            <td>Travel planning</td>
+            <td class="pt-yes">✓</td>
+            <td class="pt-yes pt-pro-col">✓</td>
+            <td class="pt-yes">✓</td>
+          </tr>
+          <tr>
+            <td>Codes &amp; Logins</td>
+            <td class="pt-no">—</td>
+            <td class="pt-yes pt-pro-col">✓</td>
+            <td class="pt-yes">✓</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </section>
 
