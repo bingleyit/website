@@ -1,0 +1,52 @@
+name: Sync demo.html from cloudpad-app/cloudpad
+
+on:
+  schedule:
+    # Run every 6 hours
+    - cron: '0 */6 * * *'
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout website repo
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Fetch latest demo.html from cloudpad-app/cloudpad
+        run: |
+          HTTP_STATUS=$(curl -s -o demo_new.html -w "%{http_code}" \
+            -H "Authorization: Bearer ${{ secrets.CLOUDPAD_REPO_TOKEN }}" \
+            "https://raw.githubusercontent.com/cloudpad-app/cloudpad/main/demo.html")
+
+          if [ "$HTTP_STATUS" != "200" ]; then
+            echo "Failed to fetch demo.html (HTTP $HTTP_STATUS). Skipping update."
+            rm -f demo_new.html
+            exit 0
+          fi
+
+          echo "Fetched demo.html successfully."
+
+      - name: Check for changes and commit
+        run: |
+          if [ ! -f demo_new.html ]; then
+            echo "No new demo.html fetched. Nothing to do."
+            exit 0
+          fi
+
+          if diff -q demo_new.html demo.html > /dev/null 2>&1; then
+            echo "demo.html is already up to date. No changes needed."
+            rm demo_new.html
+            exit 0
+          fi
+
+          echo "demo.html has changed. Updating..."
+          mv demo_new.html demo.html
+
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add demo.html
+          git commit -m "chore: sync demo.html from cloudpad-app/cloudpad [skip ci]"
+          git push
