@@ -6,7 +6,7 @@
   <title>cloudpad — a mood-based notepad</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Inter:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -21,8 +21,8 @@
       --text-dim: #9a9490;
       --text-light: #c4bfb8;
       --font-ui: 'Inter', sans-serif;
-      --font-logo: 'Caveat', cursive;
-      --font-mono: 'DM Mono', monospace;
+      --font-logo: 'Inter', sans-serif;
+      --font-mono: 'Inter', sans-serif;
     }
 
     html { scroll-behavior: smooth; }
@@ -45,9 +45,9 @@
     }
     .nav-logo {
       font-family: var(--font-logo);
-      font-size: 1.5rem; font-weight: 700;
+      font-size: 1.4rem; font-weight: 800;
       color: var(--accent); text-decoration: none;
-      letter-spacing: -0.5px;
+      letter-spacing: -0.04em;
     }
     .nav-links {
       position: absolute; left: 50%; transform: translateX(-50%);
@@ -424,8 +424,9 @@
     }
     .footer-logo {
       font-family: var(--font-logo);
-      font-size: 1.2rem; font-weight: 700;
+      font-size: 1.1rem; font-weight: 800;
       color: var(--accent); text-decoration: none;
+      letter-spacing: -0.03em;
     }
     .footer-links {
       display: flex; gap: 24px; list-style: none;
@@ -988,7 +989,7 @@
       <div class="pricing-card featured">
         <div class="pricing-badge">Most popular</div>
         <div class="pricing-name">Pro</div>
-        <div class="pricing-price"><sup>$</sup>5<span class="period">/mo</span></div>
+        <div class="pricing-price"><sup>$</sup>2<span class="period">/mo</span></div>
         <div class="pricing-desc">All pads, all features, no limits.</div>
         <hr class="pricing-divider">
         <ul class="pricing-features">
@@ -1009,7 +1010,7 @@
       <!-- Lifetime -->
       <div class="pricing-card">
         <div class="pricing-name">Lifetime</div>
-        <div class="pricing-price"><sup>$</sup>49</div>
+        <div class="pricing-price"><sup>$</sup>99</div>
         <div class="pricing-desc">One payment. Every Pro feature, now and forever.</div>
         <hr class="pricing-divider">
         <ul class="pricing-features">
