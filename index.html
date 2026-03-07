@@ -1094,6 +1094,10 @@
 
 
   <script>
+    /* ── Force scroll to top on load (prevent browser scroll restoration to #demo) ── */
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    window.addEventListener('load', function () { window.scrollTo(0, 0); });
+
     /* ── Typewriter hero headline ── */
     (function () {
       var words = ['to-do list', 'calendar', 'shopping list', 'mood board', 'project', 'workspace', 'day planner'];
