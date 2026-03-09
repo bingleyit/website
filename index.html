@@ -584,8 +584,41 @@
       padding: 80px 5vw;
     }
     .founder-inner {
-      max-width: 860px; margin: 0 auto;
+      max-width: 1100px; margin: 0 auto;
       display: flex; align-items: center; gap: 60px;
+    }
+    .founder-left {
+      flex: 1; display: flex; align-items: flex-start; gap: 36px;
+      min-width: 0;
+    }
+    .founder-video-wrap {
+      flex-shrink: 0; width: 420px;
+      aspect-ratio: 16/9;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.18);
+      border: 1px solid var(--border);
+      background: #000;
+      position: relative;
+    }
+    .founder-video-wrap iframe,
+    .founder-video-wrap video {
+      width: 100%; height: 100%;
+      border: none; display: block;
+    }
+    .founder-video-placeholder {
+      width: 100%; height: 100%;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 14px;
+      background: linear-gradient(135deg, var(--surface) 0%, var(--bg) 100%);
+      color: var(--text-dim);
+      font-family: var(--font-mono);
+      font-size: 0.78rem; letter-spacing: 0.06em;
+      text-align: center; padding: 24px;
+    }
+    .founder-video-placeholder svg {
+      opacity: 0.3;
     }
     .founder-photo-wrap {
       flex-shrink: 0;
@@ -625,9 +658,11 @@
       font-size: 1.6rem; color: var(--accent);
       line-height: 1;
     }
-    @media (max-width: 768px) {
-      .founder-inner { flex-direction: column; align-items: center; text-align: center; gap: 32px; }
-      .founder-photo-wrap { width: 140px; height: 140px; }
+    @media (max-width: 900px) {
+      .founder-inner { flex-direction: column; align-items: stretch; gap: 40px; }
+      .founder-left { flex-direction: column; align-items: center; text-align: center; }
+      .founder-photo-wrap { width: 140px; height: 140px; flex-shrink: 0; }
+      .founder-video-wrap { width: 100%; }
     }
 
     /* ── HERO FEATURE CHIPS ───────────────── */
@@ -771,15 +806,31 @@
   <!-- FOUNDER NOTE -->
   <section class="founder-section">
     <div class="founder-inner">
-      <div class="founder-photo-wrap">
-        <img src="Simon - Photo Headshot.jpg" alt="Simon, founder of cloudpad">
+      <!-- Left: headshot + text -->
+      <div class="founder-left">
+        <div class="founder-photo-wrap">
+          <img src="Simon - Photo Headshot.jpg" alt="Simon, founder of cloudpad">
+        </div>
+        <div class="founder-body">
+          <div class="founder-tag">A note from the founder</div>
+          <p class="founder-quote">
+            I built cloudpad for my own daily use — I wanted something that could really manage how I got through my workday. It's <strong>more than a to-do list</strong>: with integrations for my personal finance goals, recipe manager, and project management, I can spend most of my day working within cloudpad. I hope you enjoy it as much as I do. Please feel free to <strong>join the community</strong> — your ideas will drive the development of the system.
+          </p>
+          <div class="founder-sig">Simon</div>
+        </div>
       </div>
-      <div class="founder-body">
-        <div class="founder-tag">A note from the founder</div>
-        <p class="founder-quote">
-          I built cloudpad for my own daily use — I wanted something that could really manage how I got through my workday. It's <strong>more than a to-do list</strong>: with integrations for my personal finance goals, recipe manager, and project management, I can spend most of my day working within cloudpad. I hope you enjoy it as much as I do. Please feel free to <strong>join the community</strong> — your ideas will drive the development of the system.
-        </p>
-        <div class="founder-sig">Simon</div>
+      <!-- Right: demo video — replace src with your video URL -->
+      <div class="founder-video-wrap">
+        <!-- To embed a YouTube video, replace the placeholder below with:
+             <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" allowfullscreen></iframe>
+             Or for a self-hosted video use a <video> tag. -->
+        <div class="founder-video-placeholder">
+          <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="28" cy="28" r="27" stroke="currentColor" stroke-width="2"/>
+            <polygon points="22,18 42,28 22,38" fill="currentColor"/>
+          </svg>
+          <span>Demo video coming soon</span>
+        </div>
       </div>
     </div>
   </section>
