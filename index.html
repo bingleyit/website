@@ -576,6 +576,60 @@
     .pt-no { color: var(--text-light) !important; font-size: 1rem !important; }
     .pt-pro-col { background: rgba(0,108,209,0.05); }
 
+    /* ── FOUNDER SECTION ──────────────────── */
+    .founder-section {
+      background: var(--surface);
+      border-top: 1px solid var(--border-light);
+      border-bottom: 1px solid var(--border-light);
+      padding: 80px 5vw;
+    }
+    .founder-inner {
+      max-width: 860px; margin: 0 auto;
+      display: flex; align-items: center; gap: 60px;
+    }
+    .founder-photo-wrap {
+      flex-shrink: 0;
+      width: 200px; height: 200px;
+      border-radius: 50%;
+      overflow: hidden;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.14);
+      border: 4px solid var(--bg);
+      outline: 2px solid var(--border);
+    }
+    .founder-photo-wrap img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: top center;
+      display: block;
+      filter: grayscale(100%);
+    }
+    .founder-body { flex: 1; }
+    .founder-tag {
+      font-family: var(--font-mono);
+      font-size: 0.68rem; font-weight: 500;
+      color: var(--accent); letter-spacing: 0.14em;
+      text-transform: uppercase;
+      background: var(--accent-light);
+      padding: 4px 12px; border-radius: 20px;
+      display: inline-block; margin-bottom: 20px;
+    }
+    .founder-quote {
+      font-size: clamp(1rem, 1.6vw, 1.12rem);
+      font-weight: 300; color: var(--text-dim);
+      line-height: 1.8; margin-bottom: 24px;
+    }
+    .founder-quote strong {
+      color: var(--text); font-weight: 600;
+    }
+    .founder-sig {
+      font-family: var(--font-logo);
+      font-size: 1.6rem; color: var(--accent);
+      line-height: 1;
+    }
+    @media (max-width: 768px) {
+      .founder-inner { flex-direction: column; align-items: center; text-align: center; gap: 32px; }
+      .founder-photo-wrap { width: 140px; height: 140px; }
+    }
+
     /* ── HERO FEATURE CHIPS ───────────────── */
     .hero-chips {
       display: flex; flex-wrap: wrap; gap: 8px;
@@ -713,6 +767,22 @@
       ></iframe>
     </div>
   </div>
+
+  <!-- FOUNDER NOTE -->
+  <section class="founder-section">
+    <div class="founder-inner">
+      <div class="founder-photo-wrap">
+        <img src="simon.jpg" alt="Simon, founder of cloudpad">
+      </div>
+      <div class="founder-body">
+        <div class="founder-tag">A note from the founder</div>
+        <p class="founder-quote">
+          I built cloudpad for my own daily use — I wanted something that could really manage how I got through my workday. It's <strong>more than a to-do list</strong>: with integrations for my personal finance goals, recipe manager, and project management, I can spend most of my day working within cloudpad. I hope you enjoy it as much as I do. Please feel free to <strong>join the community</strong> — your ideas will drive the development of the system.
+        </p>
+        <div class="founder-sig">Simon</div>
+      </div>
+    </div>
+  </section>
 
   <!-- PRICING -->
   <section class="pricing-section" id="pricing">
