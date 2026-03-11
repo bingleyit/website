@@ -78,6 +78,8 @@
 
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <meta name="theme-color" content="#006cd1">
+  <!-- Prevent browser scroll restoration before render -->
+  <script>if ('scrollRestoration' in history) history.scrollRestoration = 'manual';</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Inter:wght@300;400;500;600;700;800&display=swap">
@@ -1327,9 +1329,8 @@
 
 
   <script>
-    /* ── Force scroll to top on load (prevent browser scroll restoration to #demo) ── */
-    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-    window.addEventListener('load', function () { window.scrollTo(0, 0); });
+    /* ── Force instant scroll to top on load ── */
+    window.addEventListener('load', function () { window.scrollTo({ top: 0, behavior: 'instant' }); });
 
     /* ── Typewriter hero headline ── */
     (function () {
