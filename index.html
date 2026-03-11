@@ -834,6 +834,59 @@
       .founder-video-wrap { width: 100%; }
     }
 
+    /* ── VIDEO MODAL ─────────────────────── */
+    .video-modal-trigger {
+      position: relative; cursor: pointer;
+      border-radius: 16px; overflow: hidden;
+      display: block; width: 100%;
+    }
+    .video-modal-trigger img {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+      transition: transform 0.3s ease;
+    }
+    .video-modal-trigger:hover img { transform: scale(1.03); }
+    .video-play-btn {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(0,0,0,0.25);
+      transition: background 0.2s;
+    }
+    .video-modal-trigger:hover .video-play-btn { background: rgba(0,0,0,0.38); }
+    .video-play-btn svg {
+      filter: drop-shadow(0 4px 16px rgba(0,0,0,0.4));
+      transition: transform 0.2s;
+    }
+    .video-modal-trigger:hover .video-play-btn svg { transform: scale(1.1); }
+
+    .video-modal-overlay {
+      display: none; position: fixed; inset: 0; z-index: 9000;
+      background: rgba(0,0,0,0.82);
+      align-items: center; justify-content: center;
+      padding: 24px;
+      backdrop-filter: blur(6px);
+    }
+    .video-modal-overlay.active { display: flex; }
+    .video-modal-box {
+      position: relative;
+      width: 100%; max-width: 960px;
+      aspect-ratio: 16/9;
+      border-radius: 16px; overflow: hidden;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.6);
+    }
+    .video-modal-box video {
+      width: 100%; height: 100%; display: block;
+      background: #000;
+    }
+    .video-modal-close {
+      position: absolute; top: -44px; right: 0;
+      background: none; border: none;
+      color: #fff; font-size: 2rem; line-height: 1;
+      cursor: pointer; opacity: 0.8;
+      transition: opacity 0.15s;
+    }
+    .video-modal-close:hover { opacity: 1; }
+
     /* ── FAQ ─────────────────────────────── */
     .faq-section {
       max-width: 860px; margin: 0 auto;
@@ -1031,7 +1084,7 @@
       <!-- Left: headshot + text -->
       <div class="founder-left">
         <div class="founder-photo-wrap">
-          <img src="Simon - Photo Headshot.jpg" alt="Simon, founder of cloudpad">
+          <img src="Simon Founder Photo.JPG" alt="Simon, founder of cloudpad">
         </div>
         <div class="founder-body">
           <div class="founder-tag">A note from the founder</div>
@@ -1041,9 +1094,17 @@
           <div class="founder-sig">Simon</div>
         </div>
       </div>
-      <!-- Right: demo video -->
+      <!-- Right: demo video thumbnail — opens modal on click -->
       <div class="founder-video-wrap">
-        <video src="Cloudpad Demo Video 1080p.mp4" controls playsinline preload="metadata" poster="screenshot-desktop.png"></video>
+        <button class="video-modal-trigger" aria-label="Play cloudpad demo video">
+          <img src="screenshot-desktop.png" alt="cloudpad demo — click to play">
+          <span class="video-play-btn" aria-hidden="true">
+            <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="36" cy="36" r="36" fill="rgba(255,255,255,0.95)"/>
+              <polygon points="28,20 56,36 28,52" fill="#006cd1"/>
+            </svg>
+          </span>
+        </button>
       </div>
     </div>
   </section>
@@ -1462,6 +1523,14 @@
     </div>
   </section>
 
+  <!-- VIDEO MODAL -->
+  <div class="video-modal-overlay" id="videoModal" role="dialog" aria-modal="true" aria-label="cloudpad demo video">
+    <div class="video-modal-box">
+      <button class="video-modal-close" id="videoModalClose" aria-label="Close video">&times;</button>
+      <video id="modalVideo" src="Cloudpad Demo Video 1080p.mp4" controls playsinline preload="none"></video>
+    </div>
+  </div>
+
   <!-- FAQ -->
   <section aria-labelledby="faq-heading">
     <div class="faq-section">
@@ -1561,6 +1630,35 @@
   <script>
     /* ── Force instant scroll to top on load ── */
     window.addEventListener('load', function () { window.scrollTo({ top: 0, behavior: 'instant' }); });
+
+    /* ── Video modal ── */
+    (function() {
+      var overlay = document.getElementById('videoModal');
+      var video   = document.getElementById('modalVideo');
+      var closeBtn = document.getElementById('videoModalClose');
+      var trigger = document.querySelector('.video-modal-trigger');
+
+      function openModal() {
+        overlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        video.play();
+      }
+      function closeModal() {
+        overlay.classList.remove('active');
+        document.body.style.overflow = '';
+        video.pause();
+        video.currentTime = 0;
+      }
+
+      if (trigger) trigger.addEventListener('click', openModal);
+      if (closeBtn) closeBtn.addEventListener('click', closeModal);
+      overlay.addEventListener('click', function(e) {
+        if (e.target === overlay) closeModal();
+      });
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeModal();
+      });
+    })();
 
     /* ── FAQ accordion ── */
     document.querySelectorAll('.faq-q').forEach(function(btn) {
