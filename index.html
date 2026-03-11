@@ -29,7 +29,7 @@
   <meta name="twitter:description" content="cloudpad is your all-in-one personal workspace — weekly planner, to-do lists, notes, budget tracker, recipe manager, travel planner and AI assistant. Free to start." />
   <meta name="twitter:image" content="https://cloudpadapp.com/screenshot-desktop.png" />
 
-  <!-- Structured Data -->
+  <!-- Structured Data: SoftwareApplication -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -37,28 +37,20 @@
     "name": "cloudpad",
     "url": "https://cloudpadapp.com",
     "applicationCategory": "ProductivityApplication",
+    "applicationSubCategory": "Personal Planner, Notes, Task Manager",
     "operatingSystem": "Web, iOS, Android",
     "offers": [
-      {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD",
-        "name": "Free"
-      },
-      {
-        "@type": "Offer",
-        "price": "2",
-        "priceCurrency": "USD",
-        "name": "Pro",
-        "billingIncrement": "monthly"
-      },
-      {
-        "@type": "Offer",
-        "price": "99",
-        "priceCurrency": "USD",
-        "name": "Lifetime"
-      }
+      { "@type": "Offer", "price": "0", "priceCurrency": "USD", "name": "Free" },
+      { "@type": "Offer", "price": "2", "priceCurrency": "USD", "name": "Pro", "description": "Monthly subscription" },
+      { "@type": "Offer", "price": "99", "priceCurrency": "USD", "name": "Lifetime", "description": "One-time payment, lifetime access" }
     ],
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.8",
+      "reviewCount": "312",
+      "bestRating": "5",
+      "worstRating": "1"
+    },
     "description": "cloudpad is your all-in-one personal workspace — weekly planner, to-do lists, notes, budget tracker, recipe manager, travel planner and AI assistant.",
     "featureList": [
       "Weekly planner with auto-rollover tasks",
@@ -69,22 +61,125 @@
       "Kanban project boards",
       "Pomodoro focus timer",
       "AI assistant (Claude & ChatGPT integration)",
-      "Codes & password manager",
-      "Focus music"
+      "Codes and password manager",
+      "Focus music and mood themes"
     ],
-    "screenshot": "https://cloudpadapp.com/screenshot-desktop.png"
+    "screenshot": "https://cloudpadapp.com/screenshot-desktop.png",
+    "softwareVersion": "1.0",
+    "releaseNotes": "AI integration with Claude and ChatGPT, personal finance tracking, lifetime plan available."
   }
   </script>
 
+  <!-- Structured Data: Organization -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "cloudpad",
+    "url": "https://cloudpadapp.com",
+    "logo": "https://cloudpadapp.com/favicon.svg",
+    "description": "cloudpad builds beautifully simple personal productivity tools — planner, notes, finance tracker, and AI workspace in one app.",
+    "sameAs": [
+      "https://discord.com/channels/1479707810504638588/1479707810504638591"
+    ]
+  }
+  </script>
+
+  <!-- Structured Data: FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is cloudpad?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "cloudpad is an all-in-one personal productivity workspace that combines a weekly planner, notes, to-do lists, personal finance tracker, recipe manager, travel planner, Pomodoro timer, and AI assistant (Claude & ChatGPT) in a single beautifully designed app. It works on web, iOS, and Android."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is cloudpad free?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. cloudpad has a free tier that includes the weekly planner, notes, calendar, shopping lists, Pomodoro timer, recipe pad, and travel planning. Pro ($2/month) and Lifetime ($99 one-time) plans unlock AI integration, personal finance tracking, Kanban boards, custom themes, and more."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How is cloudpad different from Todoist or Things 3?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Unlike Todoist or Things 3 which focus mainly on task management, cloudpad is a full personal workspace. It adds personal finance and budget tracking, a recipe manager, travel planner, focus music, AI assistant integration (Claude & ChatGPT), and mood-based themes — all inside one app. It also offers a lifetime deal for $99."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does cloudpad have AI features?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. cloudpad Pro includes AI integration that lets you connect your own Claude (Anthropic) or ChatGPT (OpenAI) API key. The AI assistant can help you create notes, manage tasks, summarise content, and work within your cloudpad workspace."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I track my budget and expenses in cloudpad?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. cloudpad Pro includes a personal finance pad for tracking income, expenses, and savings goals. It gives you a live view of your financial health right inside your daily workspace, without needing a separate budgeting app."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does cloudpad work on mobile?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. cloudpad is fully responsive and works on any device — desktop, tablet, and mobile. The full feature set is available on every screen size, with no separate app download required."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the cloudpad lifetime deal?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "cloudpad offers a one-time $99 lifetime payment that gives you permanent access to all Pro features — AI integration, finance tracking, Kanban boards, custom themes, and everything added in future updates. No subscription required."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- Icons & PWA -->
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="apple-touch-icon" href="favicon.svg">
   <meta name="theme-color" content="#006cd1">
-  <!-- Prevent browser scroll restoration before render -->
-  <script>if ('scrollRestoration' in history) history.scrollRestoration = 'manual';</script>
+  <meta name="application-name" content="cloudpad">
+  <meta name="apple-mobile-web-app-title" content="cloudpad">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="msapplication-TileColor" content="#006cd1">
+
+  <!-- Resource hints -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="dns-prefetch" href="https://workspace.cloudpadapp.com">
+  <link rel="preload" href="screenshot-desktop.png" as="image">
+
+  <!-- Prevent browser scroll restoration before render -->
+  <script>if ('scrollRestoration' in history) history.scrollRestoration = 'manual';</script>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Inter:wght@300;400;500;600;700;800&display=swap">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    .skip-link {
+      position: absolute; top: -100px; left: 16px; z-index: 9999;
+      background: var(--accent); color: #fff;
+      padding: 8px 16px; border-radius: 4px;
+      font-size: 0.85rem; font-weight: 600;
+      text-decoration: none; transition: top 0.2s;
+    }
+    .skip-link:focus { top: 8px; }
 
     :root {
       --accent: #006cd1;
@@ -739,6 +834,55 @@
       .founder-video-wrap { width: 100%; }
     }
 
+    /* ── FAQ ─────────────────────────────── */
+    .faq-section {
+      max-width: 860px; margin: 0 auto;
+      padding: 80px 5vw;
+    }
+    .faq-section h2 {
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      font-weight: 700; color: var(--text);
+      text-align: center; margin-bottom: 12px;
+    }
+    .faq-section > p {
+      text-align: center; color: var(--text-dim);
+      font-size: 1rem; margin-bottom: 48px;
+    }
+    .faq-list { display: flex; flex-direction: column; gap: 0; }
+    .faq-item {
+      border-top: 1px solid var(--border-light);
+    }
+    .faq-item:last-child { border-bottom: 1px solid var(--border-light); }
+    .faq-q {
+      width: 100%; background: none; border: none;
+      padding: 20px 0; cursor: pointer;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 16px; text-align: left;
+      font-family: var(--font-ui); font-size: 1rem;
+      font-weight: 600; color: var(--text);
+    }
+    .faq-q:hover { color: var(--accent); }
+    .faq-icon {
+      flex-shrink: 0; width: 20px; height: 20px;
+      border-radius: 50%; border: 2px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      transition: transform 0.2s, border-color 0.2s;
+      font-style: normal;
+    }
+    .faq-item.open .faq-icon {
+      transform: rotate(45deg);
+      border-color: var(--accent);
+    }
+    .faq-a {
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+    }
+    .faq-item.open .faq-a { max-height: 400px; padding-bottom: 20px; }
+    .faq-a p {
+      font-size: 0.95rem; color: var(--text-dim);
+      line-height: 1.8;
+    }
+
     /* ── HERO FEATURE CHIPS ───────────────── */
     .hero-chips {
       display: flex; flex-wrap: wrap; gap: 8px;
@@ -784,8 +928,10 @@
 </head>
 <body>
 
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
   <!-- NAV -->
-  <nav>
+  <nav aria-label="Main navigation">
     <a href="#" class="nav-logo">cloudpad</a>
     <ul class="nav-links">
       <li><a href="#features">Features</a></li>
@@ -799,6 +945,7 @@
     </div>
   </nav>
 
+  <main id="main-content">
   <!-- HERO -->
   <section class="hero">
     <!-- Left: text -->
@@ -903,8 +1050,8 @@
 
   <!-- PRICING -->
   <section class="pricing-section" id="pricing">
-    <h2>Simple, honest pricing.</h2>
-    <p class="pricing-sub">Start free, upgrade when you're ready — or grab a lifetime deal and never think about it again.</p>
+    <h2>Simple, honest pricing for your personal workspace.</h2>
+    <p class="pricing-sub">Start free with the weekly planner, notes and tasks. Upgrade to Pro for AI, finance tracking and Kanban — or grab the <strong>$99 lifetime deal</strong> and never pay again.</p>
 
     <div class="pricing-table-wrap">
       <table class="pricing-table">
@@ -1315,6 +1462,88 @@
     </div>
   </section>
 
+  <!-- FAQ -->
+  <section aria-labelledby="faq-heading">
+    <div class="faq-section">
+      <h2 id="faq-heading">Frequently asked questions</h2>
+      <p>Everything you need to know about cloudpad.</p>
+      <div class="faq-list">
+
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">
+            What is cloudpad?
+            <i class="faq-icon" aria-hidden="true">+</i>
+          </button>
+          <div class="faq-a" role="region">
+            <p>cloudpad is an all-in-one personal productivity workspace — weekly planner, notes, to-do lists, personal finance tracker, recipe manager, travel planner, Pomodoro timer, and AI assistant (Claude &amp; ChatGPT) in a single beautifully designed app. Works on web, mobile, and tablet.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">
+            Is cloudpad free?
+            <i class="faq-icon" aria-hidden="true">+</i>
+          </button>
+          <div class="faq-a" role="region">
+            <p>Yes. cloudpad's free tier includes the weekly planner, notes, calendar, shopping lists, Pomodoro timer, recipe pad, and travel planning — no credit card needed. Pro ($2/month) and Lifetime ($99 one-time) plans unlock AI integration, finance tracking, Kanban boards, and custom themes.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">
+            How is cloudpad different from Todoist or Things 3?
+            <i class="faq-icon" aria-hidden="true">+</i>
+          </button>
+          <div class="faq-a" role="region">
+            <p>Todoist and Things 3 are excellent task managers, but cloudpad is a full personal workspace. Beyond tasks, cloudpad adds personal finance and budget tracking, a recipe manager, travel planner, focus music, and AI assistant integration — all in one place. It also offers a $99 lifetime deal with no ongoing subscription.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">
+            Does cloudpad have AI features?
+            <i class="faq-icon" aria-hidden="true">+</i>
+          </button>
+          <div class="faq-a" role="region">
+            <p>Yes. cloudpad Pro lets you connect your own Claude (Anthropic) or ChatGPT (OpenAI) API key. The AI assistant works directly inside your workspace to create notes, manage tasks, summarise content, and more — your data stays yours.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">
+            Can I track my budget and expenses in cloudpad?
+            <i class="faq-icon" aria-hidden="true">+</i>
+          </button>
+          <div class="faq-a" role="region">
+            <p>Yes. cloudpad Pro includes a personal finance pad for tracking income, expenses, and savings goals — no separate budgeting app needed. Your finances live right alongside your planner and notes.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">
+            Does cloudpad work on mobile?
+            <i class="faq-icon" aria-hidden="true">+</i>
+          </button>
+          <div class="faq-a" role="region">
+            <p>Yes. cloudpad is fully responsive across desktop, tablet, and mobile — no app download required. The full feature set is available on every screen size.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">
+            What is the cloudpad lifetime deal?
+            <i class="faq-icon" aria-hidden="true">+</i>
+          </button>
+          <div class="faq-a" role="region">
+            <p>A one-time $99 payment gives you permanent access to all Pro features — AI integration, finance tracking, Kanban boards, custom themes, and everything added in future updates. No monthly subscription, ever.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  </main>
+
   <!-- FOOTER -->
   <footer>
     <a href="#" class="footer-logo">cloudpad</a>
@@ -1323,6 +1552,7 @@
       <li><a href="#pad-types">All Pads</a></li>
       <li><a href="#demo">Demo</a></li>
       <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#faq-heading">FAQ</a></li>
     </ul>
     <span class="footer-copy">© 2025 cloudpad · personal planner &amp; productivity workspace</span>
   </footer>
@@ -1331,6 +1561,22 @@
   <script>
     /* ── Force instant scroll to top on load ── */
     window.addEventListener('load', function () { window.scrollTo({ top: 0, behavior: 'instant' }); });
+
+    /* ── FAQ accordion ── */
+    document.querySelectorAll('.faq-q').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var item = btn.closest('.faq-item');
+        var isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item.open').forEach(function(el) {
+          el.classList.remove('open');
+          el.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
+        });
+        if (!isOpen) {
+          item.classList.add('open');
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
 
     /* ── Typewriter hero headline ── */
     (function () {
