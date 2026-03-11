@@ -3,7 +3,79 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>cloudpad — a mood-based notepad</title>
+
+  <!-- Primary SEO -->
+  <title>cloudpad — Personal Planner, Notes, Tasks & Finance Tracker</title>
+  <meta name="description" content="cloudpad is your all-in-one personal workspace — weekly planner, to-do lists, notes, budget tracker, recipe manager, travel planner and AI assistant. Free to start." />
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="cloudpad" />
+  <meta name="keywords" content="personal planner app, all-in-one productivity app, notes and tasks, to-do list app, budget tracker, weekly planner, recipe manager, AI productivity, focus timer, travel planner, cloudpad" />
+  <link rel="canonical" href="https://cloudpadapp.com/" />
+
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://cloudpadapp.com/" />
+  <meta property="og:site_name" content="cloudpad" />
+  <meta property="og:title" content="cloudpad — Personal Planner, Notes, Tasks & Finance Tracker" />
+  <meta property="og:description" content="cloudpad is your all-in-one personal workspace — weekly planner, to-do lists, notes, budget tracker, recipe manager, travel planner and AI assistant. Free to start." />
+  <meta property="og:image" content="https://cloudpadapp.com/screenshot-desktop.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="en_US" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="cloudpad — Personal Planner, Notes, Tasks & Finance Tracker" />
+  <meta name="twitter:description" content="cloudpad is your all-in-one personal workspace — weekly planner, to-do lists, notes, budget tracker, recipe manager, travel planner and AI assistant. Free to start." />
+  <meta name="twitter:image" content="https://cloudpadapp.com/screenshot-desktop.png" />
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "cloudpad",
+    "url": "https://cloudpadapp.com",
+    "applicationCategory": "ProductivityApplication",
+    "operatingSystem": "Web, iOS, Android",
+    "offers": [
+      {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD",
+        "name": "Free"
+      },
+      {
+        "@type": "Offer",
+        "price": "2",
+        "priceCurrency": "USD",
+        "name": "Pro",
+        "billingIncrement": "monthly"
+      },
+      {
+        "@type": "Offer",
+        "price": "99",
+        "priceCurrency": "USD",
+        "name": "Lifetime"
+      }
+    ],
+    "description": "cloudpad is your all-in-one personal workspace — weekly planner, to-do lists, notes, budget tracker, recipe manager, travel planner and AI assistant.",
+    "featureList": [
+      "Weekly planner with auto-rollover tasks",
+      "Notes and custom lists",
+      "Personal finance and budget tracking",
+      "Recipe manager",
+      "Travel planning",
+      "Kanban project boards",
+      "Pomodoro focus timer",
+      "AI assistant (Claude & ChatGPT integration)",
+      "Codes & password manager",
+      "Focus music"
+    ],
+    "screenshot": "https://cloudpadapp.com/screenshot-desktop.png"
+  }
+  </script>
+
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <meta name="theme-color" content="#006cd1">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -729,9 +801,9 @@
   <section class="hero">
     <!-- Left: text -->
     <div class="hero-text">
-      <div class="hero-label">your new planner and working space</div>
-      <h1>Beautifully simple<br><span class="hero-type-line"><span class="typed-word"></span><span class="typed-cursor"></span></span></h1>
-      <p>A beautifully designed notepad that adapts to how you feel. Plan your week, capture ideas, and stay focused — without the noise.</p>
+      <div class="hero-label">personal planner · notes · finance · AI workspace</div>
+      <h1 aria-label="Beautifully simple personal workspace — planner, notes, tasks and more">Beautifully simple<br><span class="hero-type-line"><span class="typed-word"></span><span class="typed-cursor"></span></span></h1>
+      <p>cloudpad is your all-in-one personal workspace — plan your week, capture notes, track spending, manage projects, and chat with your AI assistant, all in one beautifully designed app.</p>
       <p style="margin-top:16px;"><strong style="color:var(--text);font-weight:600;">Community driven development — your feedback guides our features.</strong></p>
       <div class="hero-btns">
         <a href="https://workspace.cloudpadapp.com" class="btn-primary">
@@ -770,13 +842,13 @@
           <div class="demo-url">🔒 cloudpad demo</div>
         </div>
         <div class="mockup-iframe-outer">
-          <img src="screenshot-desktop.png" alt="cloudpad app — weekly task view">
+          <img src="screenshot-desktop.png" alt="cloudpad personal workspace — weekly planner, notes and task manager app on desktop">
         </div>
       </div>
       <div class="mockup-phone">
         <div class="mockup-phone-notch"></div>
         <div class="mockup-phone-screen">
-          <img src="screenshot-mobile.png" alt="cloudpad mobile app">
+          <img src="screenshot-mobile.png" alt="cloudpad personal planner and notes app on mobile">
         </div>
       </div>
     </div>
@@ -820,12 +892,9 @@
           <div class="founder-sig">Simon</div>
         </div>
       </div>
-      <!-- Right: demo video — replace src with your video URL -->
+      <!-- Right: demo video -->
       <div class="founder-video-wrap">
-        <!-- To embed a YouTube video, replace the placeholder below with:
-             <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" allowfullscreen></iframe>
-             Or for a self-hosted video use a <video> tag. -->
-        <iframe src="https://www.canva.com/design/DAHDakb01dE/F8TfhjXdJktHm1T_yJcTug/watch?utm_content=DAHDakb01dE&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h17db7e638f" allowfullscreen allow="autoplay"></iframe>
+        <video src="Cloudpad Demo Video 1080p.mp4" controls playsinline preload="metadata" poster="screenshot-desktop.png"></video>
       </div>
     </div>
   </section>
@@ -972,7 +1041,7 @@
   <section id="features" class="features">
     <div class="features-header">
       <h2>Everything you need.<br>Nothing you don't.</h2>
-      <p>Built around the way your brain actually works — day by day, mood by mood.</p>
+      <p>A personal productivity app built for real life — planner, notes, finance tracker, recipe manager, AI assistant and more, all in one place.</p>
     </div>
 
     <div class="feature-list">
@@ -995,7 +1064,7 @@
   <section id="pad-types">
     <div class="pad-types-inner">
       <h2>One workspace. Every pad.</h2>
-      <p>cloudpad isn't just a to-do list. It's a full suite of pads — each built for a specific part of your life.</p>
+      <p>cloudpad isn't just a to-do list app. It's a full personal productivity suite — weekly planner, notes, budget tracker, recipe pad, travel planner, project manager and more, each built for a specific part of your life.</p>
 
       <div class="pad-grid">
 
@@ -1233,8 +1302,8 @@
 
   <!-- BOTTOM CTA -->
   <section class="bottom-cta">
-    <h2>Start writing. Right now.</h2>
-    <p>One workspace for every part of your life — free to get started.</p>
+    <h2>Your all-in-one personal workspace. Free to start.</h2>
+    <p>Join cloudpad — the personal planner, notes, task manager, and finance tracker built for how you actually live.</p>
     <div style="display:flex;gap:12px;justify-content:center;">
       <a href="https://workspace.cloudpadapp.com" class="btn-primary">Free signup →</a>
       <a href="#demo" class="btn-secondary">
@@ -1253,7 +1322,7 @@
       <li><a href="#demo">Demo</a></li>
       <li><a href="#pricing">Pricing</a></li>
     </ul>
-    <span class="footer-copy">built with ☁️ · 2025</span>
+    <span class="footer-copy">© 2025 cloudpad · personal planner &amp; productivity workspace</span>
   </footer>
 
 
