@@ -6,7 +6,7 @@
 
   <!-- Primary SEO -->
   <title>cloudpad — Personal Planner, Notes, Tasks & Finance Tracker</title>
-  <meta name="description" content="cloudpad is your all-in-one personal workspace — weekly planner, to-do lists, notes, budget tracker, recipe manager, travel planner and AI assistant. Free to start." />
+  <meta name="description" content="cloudpad is your all-in-one personal workspace — weekly planner, to-do lists, notes, budget tracker, recipe manager, travel planner and AI assistant. Try Pro free for 7 days." />
   <meta name="robots" content="index, follow" />
   <meta name="author" content="cloudpad" />
   <meta name="keywords" content="personal planner app, all-in-one productivity app, notes and tasks, to-do list app, budget tracker, weekly planner, recipe manager, AI productivity, focus timer, travel planner, cloudpad" />
@@ -17,7 +17,7 @@
   <meta property="og:url" content="https://cloudpadapp.com/" />
   <meta property="og:site_name" content="cloudpad" />
   <meta property="og:title" content="cloudpad — Personal Planner, Notes, Tasks & Finance Tracker" />
-  <meta property="og:description" content="cloudpad is your all-in-one personal workspace — weekly planner, to-do lists, notes, budget tracker, recipe manager, travel planner and AI assistant. Free to start." />
+  <meta property="og:description" content="cloudpad is your all-in-one personal workspace — weekly planner, to-do lists, notes, budget tracker, recipe manager, travel planner and AI assistant. Try Pro free for 7 days." />
   <meta property="og:image" content="https://cloudpadapp.com/screenshot-desktop.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
@@ -26,7 +26,7 @@
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="cloudpad — Personal Planner, Notes, Tasks & Finance Tracker" />
-  <meta name="twitter:description" content="cloudpad is your all-in-one personal workspace — weekly planner, to-do lists, notes, budget tracker, recipe manager, travel planner and AI assistant. Free to start." />
+  <meta name="twitter:description" content="cloudpad is your all-in-one personal workspace — weekly planner, to-do lists, notes, budget tracker, recipe manager, travel planner and AI assistant. Try Pro free for 7 days." />
   <meta name="twitter:image" content="https://cloudpadapp.com/screenshot-desktop.png" />
 
   <!-- Structured Data: SoftwareApplication -->
@@ -40,8 +40,7 @@
     "applicationSubCategory": "Personal Planner, Notes, Task Manager",
     "operatingSystem": "Web, iOS, Android",
     "offers": [
-      { "@type": "Offer", "price": "0", "priceCurrency": "USD", "name": "Free" },
-      { "@type": "Offer", "price": "2", "priceCurrency": "USD", "name": "Pro", "description": "Monthly subscription" },
+      { "@type": "Offer", "price": "2", "priceCurrency": "USD", "name": "Pro", "description": "Monthly subscription, 7-day free trial" },
       { "@type": "Offer", "price": "99", "priceCurrency": "USD", "name": "Lifetime", "description": "One-time payment, lifetime access" }
     ],
     "aggregateRating": {
@@ -66,7 +65,7 @@
     ],
     "screenshot": "https://cloudpadapp.com/screenshot-desktop.png",
     "softwareVersion": "1.0",
-    "releaseNotes": "AI integration with Claude and ChatGPT, personal finance tracking, lifetime plan available."
+    "releaseNotes": "AI integration with Claude and ChatGPT, personal finance tracking, lifetime plan available. Pro includes a 7-day free trial."
   }
   </script>
 
@@ -101,10 +100,10 @@
       },
       {
         "@type": "Question",
-        "name": "Is cloudpad free?",
+        "name": "Can I try cloudpad before paying?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes. cloudpad has a free tier that includes the weekly planner, notes, calendar, shopping lists, Pomodoro timer, recipe pad, and travel planning. Pro ($2/month) and Lifetime ($99 one-time) plans unlock AI integration, personal finance tracking, Kanban boards, custom themes, and more."
+          "text": "Yes. cloudpad Pro comes with a free 7-day trial — no credit card required. After the trial, Pro is $2/month. Alternatively, the Lifetime plan ($99 one-time) gives you permanent access to all features with no ongoing subscription."
         }
       },
       {
@@ -686,7 +685,7 @@
       vertical-align: bottom;
     }
     .pricing-table thead th:first-child { width: 38%; text-align: left; padding-bottom: 28px; }
-    .pricing-table thead th:not(:first-child) { width: 20.7%; }
+    .pricing-table thead th:not(:first-child) { width: 31%; }
     /* Extra top room on featured col so the badge doesn't clip */
     .pricing-table thead th:has(.pt-tier-wrap.featured) { padding-top: 18px; }
     .pt-tier-wrap {
@@ -744,6 +743,11 @@
     .pt-yes { color: var(--accent) !important; font-weight: 700; font-size: 1rem !important; }
     .pt-no { color: var(--text-light) !important; font-size: 1rem !important; }
     .pt-pro-col { background: rgba(0,108,209,0.05); }
+    .pt-trial {
+      font-size: 0.7rem; font-weight: 500; color: rgba(255,255,255,0.85);
+      background: rgba(255,255,255,0.18); border-radius: 20px;
+      padding: 2px 10px; letter-spacing: 0.04em;
+    }
 
     /* ── FOUNDER SECTION ──────────────────── */
     .founder-section {
@@ -1011,7 +1015,7 @@
       <div class="hero-btns">
         <a href="https://workspace.cloudpadapp.com" class="btn-primary">
           <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-          Free signup
+          Start free 7-day trial
         </a>
         <a href="https://discord.com/channels/1479707810504638588/1479707810504638591" class="btn-discord" target="_blank" rel="noopener">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057c.003.025.015.048.03.063a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
@@ -1113,7 +1117,7 @@
   <!-- PRICING -->
   <section class="pricing-section" id="pricing">
     <h2>Simple, honest pricing for your personal workspace.</h2>
-    <p class="pricing-sub">Start free with the weekly planner, notes and tasks. Upgrade to Pro for AI, finance tracking and Kanban — or grab the <strong>$99 lifetime deal</strong> and never pay again.</p>
+    <p class="pricing-sub">Try Pro free for 7 days — no credit card required. Or grab the <strong>$99 lifetime deal</strong> and never pay again.</p>
 
     <div class="pricing-table-wrap">
       <table class="pricing-table">
@@ -1121,18 +1125,12 @@
           <tr>
             <th></th>
             <th>
-              <div class="pt-tier-wrap">
-                <div class="pt-tier-name">Free</div>
-                <div class="pt-tier-price"><sup>$</sup>0</div>
-                <a href="https://workspace.cloudpadapp.com" class="pt-cta">Get started free</a>
-              </div>
-            </th>
-            <th>
               <div class="pt-tier-wrap featured">
                 <div class="pt-badge">Most popular</div>
                 <div class="pt-tier-name">Pro</div>
                 <div class="pt-tier-price"><sup>$</sup>2<span class="period">/mo</span></div>
-                <a href="https://workspace.cloudpadapp.com" class="pt-cta featured">Start Pro</a>
+                <div class="pt-trial">7-day free trial</div>
+                <a href="https://workspace.cloudpadapp.com" class="pt-cta featured">Start free trial</a>
               </div>
             </th>
             <th>
@@ -1147,97 +1145,81 @@
         <tbody>
           <tr>
             <td>Weekly planner</td>
-            <td class="pt-yes">✓</td>
             <td class="pt-yes pt-pro-col">✓</td>
             <td class="pt-yes">✓</td>
           </tr>
           <tr>
             <td>Calendar</td>
-            <td class="pt-yes">✓</td>
             <td class="pt-yes pt-pro-col">✓</td>
             <td class="pt-yes">✓</td>
           </tr>
           <tr>
             <td>Notes</td>
-            <td class="pt-yes">✓</td>
             <td class="pt-yes pt-pro-col">✓</td>
             <td class="pt-yes">✓</td>
           </tr>
           <tr>
             <td>Custom Lists</td>
-            <td class="pt-no">—</td>
             <td class="pt-yes pt-pro-col">✓</td>
             <td class="pt-yes">✓</td>
           </tr>
           <tr>
             <td>Custom Themes</td>
-            <td class="pt-no">—</td>
             <td class="pt-yes pt-pro-col">✓</td>
             <td class="pt-yes">✓</td>
           </tr>
           <tr>
             <td>Pomodoro</td>
-            <td class="pt-yes">✓</td>
             <td class="pt-yes pt-pro-col">✓</td>
             <td class="pt-yes">✓</td>
           </tr>
           <tr>
             <td>Mood Streaming Sounds</td>
-            <td class="pt-yes">✓</td>
             <td class="pt-yes pt-pro-col">✓</td>
             <td class="pt-yes">✓</td>
           </tr>
           <tr>
             <td>Shopping lists</td>
-            <td class="pt-yes">✓</td>
             <td class="pt-yes pt-pro-col">✓</td>
             <td class="pt-yes">✓</td>
           </tr>
           <tr>
             <td>Share Lists</td>
-            <td class="pt-yes">✓</td>
             <td class="pt-yes pt-pro-col">✓</td>
             <td class="pt-yes">✓</td>
           </tr>
           <tr>
             <td>Projects &amp; Kanban</td>
-            <td class="pt-no">—</td>
             <td class="pt-yes pt-pro-col">✓</td>
             <td class="pt-yes">✓</td>
           </tr>
           <tr>
             <td>Recipe pad</td>
-            <td class="pt-yes">✓</td>
             <td class="pt-yes pt-pro-col">✓</td>
             <td class="pt-yes">✓</td>
           </tr>
           <tr>
             <td>Personal Finance Tracking</td>
-            <td class="pt-no">—</td>
             <td class="pt-yes pt-pro-col">✓</td>
             <td class="pt-yes">✓</td>
           </tr>
           <tr>
             <td>News Feed</td>
-            <td class="pt-no">—</td>
             <td class="pt-yes pt-pro-col">✓</td>
             <td class="pt-yes">✓</td>
           </tr>
           <tr>
             <td>Travel planning</td>
-            <td class="pt-yes">✓</td>
             <td class="pt-yes pt-pro-col">✓</td>
             <td class="pt-yes">✓</td>
           </tr>
           <tr>
             <td>Codes &amp; Logins</td>
-            <td class="pt-no">—</td>
             <td class="pt-yes pt-pro-col">✓</td>
             <td class="pt-yes">✓</td>
           </tr>
           <tr>
             <td>AI Integration <small style="font-size:0.75em;color:var(--text-dim)">(Claude &amp; ChatGPT)</small></td>
-            <td class="pt-no">—</td>
             <td class="pt-yes pt-pro-col">✓</td>
             <td class="pt-yes">✓</td>
           </tr>
@@ -1513,10 +1495,10 @@
 
   <!-- BOTTOM CTA -->
   <section class="bottom-cta">
-    <h2>Your all-in-one personal workspace. Free to start.</h2>
+    <h2>Your all-in-one personal workspace. Try free for 7 days.</h2>
     <p>Join cloudpad — the personal planner, notes, task manager, and finance tracker built for how you actually live.</p>
     <div style="display:flex;gap:12px;justify-content:center;">
-      <a href="https://workspace.cloudpadapp.com" class="btn-primary">Free signup →</a>
+      <a href="https://workspace.cloudpadapp.com" class="btn-primary">Start free 7-day trial →</a>
       <a href="#demo" class="btn-secondary">
         <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
         See the demo
@@ -1551,11 +1533,11 @@
 
         <div class="faq-item">
           <button class="faq-q" aria-expanded="false">
-            Is cloudpad free?
+            Can I try cloudpad before paying?
             <i class="faq-icon" aria-hidden="true">+</i>
           </button>
           <div class="faq-a" role="region">
-            <p>Yes. cloudpad's free tier includes the weekly planner, notes, calendar, shopping lists, Pomodoro timer, recipe pad, and travel planning — no credit card needed. Pro ($2/month) and Lifetime ($99 one-time) plans unlock AI integration, finance tracking, Kanban boards, and custom themes.</p>
+            <p>Yes — cloudpad Pro comes with a free 7-day trial, no credit card required. After the trial, Pro is just $2/month. If you prefer not to subscribe, the Lifetime plan ($99 one-time) gives you permanent access to all features.</p>
           </div>
         </div>
 
